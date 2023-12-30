@@ -1,0 +1,1 @@
+﻿global using Mukesh.Domain.Common.Contracts;

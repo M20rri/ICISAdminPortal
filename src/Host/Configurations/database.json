@@ -1,0 +1,6 @@
+{
+  "DatabaseSettings": {
+    "DBProvider": "mssql",
+    "ConnectionString": "Data Source=.;Initial Catalog=Mukesh;integrated security=true;TrustServerCertificate=True;"
+  }
+}

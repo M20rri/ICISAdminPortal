@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "e07d41d9-339a-4f3d-b6c7-0a30d0d6a06f",
+		"name": "ICIS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1809690"
+	},
+	"item": [
+		{
+			"name": "1 - Generate Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "tenant",
+						"value": "root"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"Mahmoud.ElTorri@icisys.net\",\r\n  \"password\": \"Torri@12345\"\r\n}"
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/tokens",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2 - Create Module",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": {\r\n        \"nameAr\": \"إدارة الحركة\",\r\n        \"nameEn\": \"Movement Management\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/v1/module",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"v1",
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 - Create Action",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": {\r\n        \"nameAr\": \"تحميل ملف\",\r\n        \"nameEn\": \"Export\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/v1/actionpages",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"v1",
+						"actionpages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4 - Create Page",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": {\r\n        \"nameAr\": \"ترميز حالات السيارات\",\r\n        \"nameEn\": \"Coding Car Status\",\r\n        \"moduleId\": \"1FFCC7FB-7A82-4928-1240-08DC091D85E7\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/page",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"page"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " 5 - Create Permission",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": {\r\n        \"actionId\": \"706D10EF-3EC3-4DE8-A442-08DC092781A8\",\r\n        \"pageId\": \"B0EDCD50-0073-4227-A2B8-08DC092B2C7F\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/v1/permission",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"v1",
+						"permission"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6 - Generate Role and Permission Claims",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"roleId\": \"d4906360-eaa5-461a-bac9-4bc0f39900c6\",\r\n    \"permissionId\": \"B20A699B-CB42-46BE-9497-08DC0934B492\"\r\n}"
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/roles/createroleclaimasync",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"roles",
+						"createroleclaimasync"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TOKEN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjUyNjVjYmE1LTQ1OTMtNGY1MC1hYWE5LWIxN2I0MGI5YTRiZSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Ik1haG1vdWQuRWxUb3JyaUBpY2lzeXMubmV0IiwiZnVsbE5hbWUiOiJNYWhtb3VkIEVsVG9ycmkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiTWFobW91ZCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3N1cm5hbWUiOiJFbFRvcnJpIiwiaXBBZGRyZXNzIjoiMC4wLjAuMSIsInRlbmFudCI6InJvb3QiLCJpbWFnZV91cmwiOiIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9tb2JpbGVwaG9uZSI6IiIsImV4cCI6MTcwMzk0NTQwNn0.hucOKWzvMmlLzGr0KCc9B6dqp1v3N9tjRxG4GzCdpJU",
+			"type": "string"
+		},
+		{
+			"key": "BaseUrl",
+			"value": "https://localhost:5003/api",
+			"type": "string"
+		}
+	]
+}

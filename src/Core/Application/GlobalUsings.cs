@@ -1,0 +1,17 @@
+global using Ardalis.Specification;
+global using FluentValidation;
+global using MediatR;
+global using Microsoft.Extensions.Localization;
+global using Microsoft.Extensions.Logging;
+global using Mukesh.Application.Common.Events;
+global using Mukesh.Application.Common.Exceptions;
+global using Mukesh.Application.Common.FileStorage;
+global using Mukesh.Application.Common.Interfaces;
+global using Mukesh.Application.Common.Models;
+global using Mukesh.Application.Common.Persistence;
+global using Mukesh.Application.Common.Specification;
+global using Mukesh.Application.Common.Validation;
+global using Mukesh.Domain.Catalog;
+global using Mukesh.Domain.Common;
+global using Mukesh.Domain.Common.Contracts;
+global using Mukesh.Shared.Notifications;
