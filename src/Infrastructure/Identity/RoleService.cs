@@ -12,6 +12,7 @@ using ICISAdminPortal.Domain.Identity;
 using ICISAdminPortal.Infrastructure.Persistence.Context;
 using ICISAdminPortal.Shared.Authorization;
 using ICISAdminPortal.Shared.Multitenancy;
+using FluentValidation;
 
 namespace ICISAdminPortal.Infrastructure.Identity;
 internal class RoleService : IRoleService
@@ -189,6 +190,14 @@ internal class RoleService : IRoleService
 
     public async Task<int> CreateClaimsAsync(CreatePermissionClaimRequestDto request, CancellationToken cancellationToken)
     {
+        CreatePermissionClaimRequestValidator validationRules = new CreatePermissionClaimRequestValidator();
+        var result = await validationRules.ValidateAsync(request);
+        if (result.Errors.Any())
+        {
+            var errors = result.Errors;
+            throw new ValidationException(errors);
+        }
+
         var role = await _roleManager.FindByIdAsync(request.roleId);
         ApplicationRoleClaim claim = default!;
         if (role != null)
