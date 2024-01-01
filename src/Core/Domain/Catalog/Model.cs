@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Domain.Catalog;
+﻿namespace ICISAdminPortal.Domain.Catalog;
 public class Model : BaseTypeEntity, IAggregateRoot
 {
     public Guid BrandId { get; set; }

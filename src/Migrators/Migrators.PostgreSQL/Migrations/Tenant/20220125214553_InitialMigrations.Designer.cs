@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mukesh.Infrastructure.Multitenancy;
+using ICISAdminPortal.Infrastructure.Multitenancy;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using System;
 
@@ -23,7 +23,7 @@ partial class InitialMigrations
 
         NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-        modelBuilder.Entity("Mukesh.Infrastructure.Multitenancy.FSHTenantInfo", b =>
+        modelBuilder.Entity("ICISAdminPortal.Infrastructure.Multitenancy.FSHTenantInfo", b =>
             {
                 b.Property<string>("Id")
                     .HasMaxLength(64)

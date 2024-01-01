@@ -1,6 +1,6 @@
-﻿using Mukesh.Shared.Multitenancy;
+﻿using ICISAdminPortal.Shared.Multitenancy;
 
-namespace Mukesh.Infrastructure.OpenApi;
+namespace ICISAdminPortal.Infrastructure.OpenApi;
 public class TenantIdHeaderAttribute : SwaggerHeaderAttribute
 {
     public TenantIdHeaderAttribute()

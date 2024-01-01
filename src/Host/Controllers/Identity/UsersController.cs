@@ -1,7 +1,7 @@
-using Mukesh.Application.Identity.Users;
-using Mukesh.Application.Identity.Users.Password;
+using ICISAdminPortal.Application.Identity.Users;
+using ICISAdminPortal.Application.Identity.Users.Password;
 
-namespace Mukesh.Host.Controllers.Identity;
+namespace ICISAdminPortal.Host.Controllers.Identity;
 public class UsersController : VersionNeutralApiController
 {
     private readonly IUserService _userService;

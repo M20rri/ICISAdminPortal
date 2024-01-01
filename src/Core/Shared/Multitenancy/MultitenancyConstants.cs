@@ -1,4 +1,4 @@
-namespace Mukesh.Shared.Multitenancy;
+namespace ICISAdminPortal.Shared.Multitenancy;
 
 public class MultitenancyConstants
 {

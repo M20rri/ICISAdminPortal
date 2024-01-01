@@ -1,7 +1,7 @@
 using MassTransit;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Mukesh.Domain.Common.Contracts;
+namespace ICISAdminPortal.Domain.Common.Contracts;
 public abstract class BaseEntity : BaseEntity<DefaultIdType>
 {
     protected BaseEntity() => Id = NewId.Next().ToGuid();

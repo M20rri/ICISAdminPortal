@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Shared.Notifications;
+﻿namespace ICISAdminPortal.Shared.Notifications;
 
 public class BasicNotification : INotificationMessage
 {

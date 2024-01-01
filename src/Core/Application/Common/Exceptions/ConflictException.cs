@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace Mukesh.Application.Common.Exceptions;
+namespace ICISAdminPortal.Application.Common.Exceptions;
 public class ConflictException : CustomException
 {
     public ConflictException(string message)

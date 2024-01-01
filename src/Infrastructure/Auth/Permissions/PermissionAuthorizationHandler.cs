@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
-using Mukesh.Application.Identity.Users;
+using ICISAdminPortal.Application.Identity.Users;
 using System.Security.Claims;
 
-namespace Mukesh.Infrastructure.Auth.Permissions;
+namespace ICISAdminPortal.Infrastructure.Auth.Permissions;
 internal class PermissionAuthorizationHandler : AuthorizationHandler<PermissionRequirement>
 {
     private readonly IUserService _userService;

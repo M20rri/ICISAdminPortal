@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Infrastructure.OpenApi;
+﻿namespace ICISAdminPortal.Infrastructure.OpenApi;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
 public class SwaggerHeaderAttribute : Attribute

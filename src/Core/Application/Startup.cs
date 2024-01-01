@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Mukesh.Application;
+namespace ICISAdminPortal.Application;
 public static class Startup
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)

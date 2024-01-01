@@ -1,9 +1,9 @@
-using Mukesh.Application.Common.Interfaces;
+using ICISAdminPortal.Application.Common.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
-namespace Mukesh.Infrastructure.Common.Services;
+namespace ICISAdminPortal.Infrastructure.Common.Services;
 public class NewtonSoftService : ISerializerService
 {
     public T Deserialize<T>(string text)

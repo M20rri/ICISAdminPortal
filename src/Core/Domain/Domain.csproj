@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <RootNamespace>Mukesh.Domain</RootNamespace>
-        <AssemblyName>Mukesh.Domain</AssemblyName>
+        <RootNamespace>ICISAdminPortal.Domain</RootNamespace>
+        <AssemblyName>ICISAdminPortal.Domain</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="NewId" Version="4.0.1" />

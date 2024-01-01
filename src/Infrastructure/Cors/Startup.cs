@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Mukesh.Infrastructure.Common.Settings;
+using ICISAdminPortal.Infrastructure.Common.Settings;
 
-namespace Mukesh.Infrastructure.Cors;
+namespace ICISAdminPortal.Infrastructure.Cors;
 internal static class Startup
 {
     private const string CorsPolicy = nameof(CorsPolicy);

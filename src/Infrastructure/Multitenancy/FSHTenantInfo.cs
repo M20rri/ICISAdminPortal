@@ -1,7 +1,7 @@
 ﻿using Finbuckle.MultiTenant;
-using Mukesh.Shared.Multitenancy;
+using ICISAdminPortal.Shared.Multitenancy;
 
-namespace Mukesh.Infrastructure.Multitenancy;
+namespace ICISAdminPortal.Infrastructure.Multitenancy;
 public class FSHTenantInfo : ITenantInfo
 {
     public FSHTenantInfo()

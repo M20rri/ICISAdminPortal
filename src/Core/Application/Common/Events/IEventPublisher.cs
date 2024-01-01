@@ -1,6 +1,6 @@
-using Mukesh.Shared.Events;
+using ICISAdminPortal.Shared.Events;
 
-namespace Mukesh.Application.Common.Events;
+namespace ICISAdminPortal.Application.Common.Events;
 public interface IEventPublisher : ITransientService
 {
     Task PublishAsync(IEvent @event);

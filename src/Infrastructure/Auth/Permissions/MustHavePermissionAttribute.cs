@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
-using Mukesh.Shared.Authorization;
+using ICISAdminPortal.Shared.Authorization;
 
-namespace Mukesh.Infrastructure.Auth.Permissions;
+namespace ICISAdminPortal.Infrastructure.Auth.Permissions;
 public class MustHavePermissionAttribute : AuthorizeAttribute
 {
     public MustHavePermissionAttribute(string action, string resource) =>

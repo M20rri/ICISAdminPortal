@@ -4,12 +4,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
-using Mukesh.Application.Multitenancy;
-using Mukesh.Infrastructure.Persistence;
-using Mukesh.Shared.Authorization;
-using Mukesh.Shared.Multitenancy;
+using ICISAdminPortal.Application.Multitenancy;
+using ICISAdminPortal.Infrastructure.Persistence;
+using ICISAdminPortal.Shared.Authorization;
+using ICISAdminPortal.Shared.Multitenancy;
 
-namespace Mukesh.Infrastructure.Multitenancy;
+namespace ICISAdminPortal.Infrastructure.Multitenancy;
 internal static class Startup
 {
     internal static IServiceCollection AddMultitenancy(this IServiceCollection services)

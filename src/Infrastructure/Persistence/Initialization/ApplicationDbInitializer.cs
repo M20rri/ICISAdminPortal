@@ -1,9 +1,9 @@
 using Finbuckle.MultiTenant;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Mukesh.Infrastructure.Persistence.Context;
+using ICISAdminPortal.Infrastructure.Persistence.Context;
 
-namespace Mukesh.Infrastructure.Persistence.Initialization;
+namespace ICISAdminPortal.Infrastructure.Persistence.Initialization;
 internal class ApplicationDbInitializer
 {
     private readonly ApplicationDbContext _dbContext;

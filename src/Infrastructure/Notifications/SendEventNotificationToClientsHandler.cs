@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using Mukesh.Application.Common.Events;
-using Mukesh.Application.Common.Interfaces;
-using Mukesh.Shared.Notifications;
+using ICISAdminPortal.Application.Common.Events;
+using ICISAdminPortal.Application.Common.Interfaces;
+using ICISAdminPortal.Shared.Notifications;
 
-namespace Mukesh.Infrastructure.Notifications;
+namespace ICISAdminPortal.Infrastructure.Notifications;
 // Sends all events that are also an INotificationMessage to all clients
 // Note: for this to work, the Event/NotificationMessage class needs to be in the
 // shared project (i.e. have the same FullName - so with namespace - on both sides)

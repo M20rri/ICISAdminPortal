@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Infrastructure.Persistence.Configuration;
+﻿namespace ICISAdminPortal.Infrastructure.Persistence.Configuration;
 
 internal static class SchemaNames
 {

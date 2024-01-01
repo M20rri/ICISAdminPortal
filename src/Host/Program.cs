@@ -1,9 +1,9 @@
-using Mukesh.Application;
-using Mukesh.Host.Configurations;
-using Mukesh.Host.Controllers;
-using Mukesh.Infrastructure;
-using Mukesh.Infrastructure.Common;
-using Mukesh.Infrastructure.Logging.Serilog;
+using ICISAdminPortal.Application;
+using ICISAdminPortal.Host.Configurations;
+using ICISAdminPortal.Host.Controllers;
+using ICISAdminPortal.Infrastructure;
+using ICISAdminPortal.Infrastructure.Common;
+using ICISAdminPortal.Infrastructure.Logging.Serilog;
 using Serilog;
 using Serilog.Formatting.Compact;
 

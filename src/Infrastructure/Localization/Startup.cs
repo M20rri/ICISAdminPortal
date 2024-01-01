@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.Localization;
 using System.Globalization;
 
-namespace Mukesh.Infrastructure.Localization;
+namespace ICISAdminPortal.Infrastructure.Localization;
 internal static class Startup
 {
     internal static IServiceCollection AddPOLocalization(this IServiceCollection services, IConfiguration config)

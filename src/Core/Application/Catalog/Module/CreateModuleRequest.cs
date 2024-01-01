@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Application.Catalog.Module;
+﻿namespace ICISAdminPortal.Application.Catalog.Module;
 public record CreateModuleRequest(CreateModuleRequestDto model) : IRequest<DefaultIdType>;
 
 public sealed class CreateModuleHandler : IRequestHandler<CreateModuleRequest, DefaultIdType>

@@ -1,6 +1,6 @@
-﻿using Mukesh.Application.Catalog.Pages;
+﻿using ICISAdminPortal.Application.Catalog.Pages;
 
-namespace Mukesh.Host.Controllers.Catalog;
+namespace ICISAdminPortal.Host.Controllers.Catalog;
 public class PageController : VersionNeutralApiController
 {
     public Task<Guid> CreateAsync(CreatePageRequest request)

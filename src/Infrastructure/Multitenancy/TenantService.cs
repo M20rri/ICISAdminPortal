@@ -2,13 +2,13 @@
 using Mapster;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
-using Mukesh.Application.Common.Exceptions;
-using Mukesh.Application.Common.Persistence;
-using Mukesh.Application.Multitenancy;
-using Mukesh.Infrastructure.Persistence;
-using Mukesh.Infrastructure.Persistence.Initialization;
+using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Application.Common.Persistence;
+using ICISAdminPortal.Application.Multitenancy;
+using ICISAdminPortal.Infrastructure.Persistence;
+using ICISAdminPortal.Infrastructure.Persistence.Initialization;
 
-namespace Mukesh.Infrastructure.Multitenancy;
+namespace ICISAdminPortal.Infrastructure.Multitenancy;
 internal class TenantService : ITenantService
 {
     private readonly IMultiTenantStore<FSHTenantInfo> _tenantStore;

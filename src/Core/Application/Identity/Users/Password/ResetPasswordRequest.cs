@@ -1,4 +1,4 @@
-namespace Mukesh.Application.Identity.Users.Password;
+namespace ICISAdminPortal.Application.Identity.Users.Password;
 
 public class ResetPasswordRequest
 {

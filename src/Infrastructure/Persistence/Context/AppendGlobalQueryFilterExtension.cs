@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
-namespace Mukesh.Infrastructure.Persistence.Context;
+namespace ICISAdminPortal.Infrastructure.Persistence.Context;
 internal static class ModelBuilderExtensions
 {
     public static ModelBuilder AppendGlobalQueryFilter<TInterface>(this ModelBuilder modelBuilder, Expression<Func<TInterface, bool>> filter)

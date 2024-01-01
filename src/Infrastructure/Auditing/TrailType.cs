@@ -1,4 +1,4 @@
-namespace Mukesh.Infrastructure.Auditing;
+namespace ICISAdminPortal.Infrastructure.Auditing;
 
 public enum TrailType : byte
 {

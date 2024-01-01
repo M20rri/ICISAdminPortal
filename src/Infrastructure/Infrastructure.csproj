@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <RootNamespace>Mukesh.Infrastructure</RootNamespace>
-        <AssemblyName>Mukesh.Infrastructure</AssemblyName>
+        <RootNamespace>ICISAdminPortal.Infrastructure</RootNamespace>
+        <AssemblyName>ICISAdminPortal.Infrastructure</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />

@@ -1,4 +1,4 @@
-namespace Mukesh.Application.Identity.Tokens;
+namespace ICISAdminPortal.Application.Identity.Tokens;
 
 public record TokenRequest(string Email, string Password);
 

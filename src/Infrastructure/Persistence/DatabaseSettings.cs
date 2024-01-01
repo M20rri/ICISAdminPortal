@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Mukesh.Infrastructure.Persistence;
+namespace ICISAdminPortal.Infrastructure.Persistence;
 public class DatabaseSettings : IValidatableObject
 {
     public string DBProvider { get; set; } = string.Empty;

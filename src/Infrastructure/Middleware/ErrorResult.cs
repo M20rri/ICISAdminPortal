@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Infrastructure.Middleware;
+﻿namespace ICISAdminPortal.Infrastructure.Middleware;
 
 public class ErrorResult
 {

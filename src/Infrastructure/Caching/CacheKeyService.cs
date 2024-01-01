@@ -1,7 +1,7 @@
 ﻿using Finbuckle.MultiTenant;
-using Mukesh.Application.Common.Caching;
+using ICISAdminPortal.Application.Common.Caching;
 
-namespace Mukesh.Infrastructure.Caching;
+namespace ICISAdminPortal.Infrastructure.Caching;
 public class CacheKeyService : ICacheKeyService
 {
     private readonly ITenantInfo? _currentTenant;

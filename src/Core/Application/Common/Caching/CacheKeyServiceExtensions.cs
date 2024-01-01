@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Application.Common.Caching;
+﻿namespace ICISAdminPortal.Application.Common.Caching;
 
 public static class CacheKeyServiceExtensions
 {

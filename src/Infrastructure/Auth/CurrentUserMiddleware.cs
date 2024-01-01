@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Mukesh.Infrastructure.Auth;
+namespace ICISAdminPortal.Infrastructure.Auth;
 public class CurrentUserMiddleware : IMiddleware
 {
     private readonly ICurrentUserInitializer _currentUserInitializer;

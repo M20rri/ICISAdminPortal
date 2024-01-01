@@ -1,11 +1,11 @@
 ﻿using Ardalis.Specification;
 using Microsoft.EntityFrameworkCore;
-using Mukesh.Application.Common.Persistence;
-using Mukesh.Domain.Common.Contracts;
-using Mukesh.Domain.Common.Events;
+using ICISAdminPortal.Application.Common.Persistence;
+using ICISAdminPortal.Domain.Common.Contracts;
+using ICISAdminPortal.Domain.Common.Events;
 using System.Linq.Expressions;
 
-namespace Mukesh.Infrastructure.Persistence.Repository;
+namespace ICISAdminPortal.Infrastructure.Persistence.Repository;
 public class EventAddingRepositoryDecorator<T> : IRepositoryWithEvents<T>
     where T : class, IAggregateRoot
 {

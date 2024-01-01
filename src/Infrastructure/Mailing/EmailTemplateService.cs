@@ -1,8 +1,8 @@
-using Mukesh.Application.Common.Mailing;
+using ICISAdminPortal.Application.Common.Mailing;
 using RazorEngineCore;
 using System.Text;
 
-namespace Mukesh.Infrastructure.Mailing;
+namespace ICISAdminPortal.Infrastructure.Mailing;
 public class EmailTemplateService : IEmailTemplateService
 {
     public string GenerateEmailTemplate<T>(string templateName, T mailTemplateModel)

@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
-using Mukesh.Application.Common.Caching;
+using ICISAdminPortal.Application.Common.Caching;
 
-namespace Mukesh.Infrastructure.Caching;
+namespace ICISAdminPortal.Infrastructure.Caching;
 public class LocalCacheService : ICacheService
 {
     private readonly ILogger<LocalCacheService> _logger;

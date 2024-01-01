@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using Mukesh.Application.Common.Exceptions;
-using Mukesh.Application.Common.Mailing;
-using Mukesh.Application.Identity.Users.Password;
+using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Application.Common.Mailing;
+using ICISAdminPortal.Application.Identity.Users.Password;
 
-namespace Mukesh.Infrastructure.Identity;
+namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService
 {
     public async Task<string> ForgotPasswordAsync(ForgotPasswordRequest request, string origin)

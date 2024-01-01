@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Application.Common.Models;
+﻿namespace ICISAdminPortal.Application.Common.Models;
 
 public static class FilterOperator
 {

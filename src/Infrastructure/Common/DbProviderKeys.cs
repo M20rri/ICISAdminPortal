@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Infrastructure.Common;
+﻿namespace ICISAdminPortal.Infrastructure.Common;
 
 internal class DbProviderKeys
 {

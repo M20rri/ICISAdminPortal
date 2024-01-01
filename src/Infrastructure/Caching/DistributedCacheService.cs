@@ -1,10 +1,10 @@
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using Mukesh.Application.Common.Caching;
-using Mukesh.Application.Common.Interfaces;
+using ICISAdminPortal.Application.Common.Caching;
+using ICISAdminPortal.Application.Common.Interfaces;
 using System.Text;
 
-namespace Mukesh.Infrastructure.Caching;
+namespace ICISAdminPortal.Infrastructure.Caching;
 #pragma warning disable CA2254
 public class DistributedCacheService : ICacheService
 {

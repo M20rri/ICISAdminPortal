@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Shared.Authorization;
+﻿namespace ICISAdminPortal.Shared.Authorization;
 
 public static class FSHClaims
 {

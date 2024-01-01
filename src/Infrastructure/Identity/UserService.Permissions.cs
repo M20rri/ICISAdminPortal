@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Mukesh.Application.Common.Caching;
-using Mukesh.Application.Common.Exceptions;
-using Mukesh.Shared.Authorization;
+using ICISAdminPortal.Application.Common.Caching;
+using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Shared.Authorization;
 
-namespace Mukesh.Infrastructure.Identity;
+namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService
 {
     public async Task<List<string>> GetPermissionsAsync(string userId, CancellationToken cancellationToken)

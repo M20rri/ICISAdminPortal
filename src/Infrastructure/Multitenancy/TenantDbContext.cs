@@ -1,8 +1,8 @@
 ﻿using Finbuckle.MultiTenant.Stores;
 using Microsoft.EntityFrameworkCore;
-using Mukesh.Infrastructure.Persistence.Configuration;
+using ICISAdminPortal.Infrastructure.Persistence.Configuration;
 
-namespace Mukesh.Infrastructure.Multitenancy;
+namespace ICISAdminPortal.Infrastructure.Multitenancy;
 public class TenantDbContext : EFCoreStoreDbContext<FSHTenantInfo>
 {
     public TenantDbContext(DbContextOptions<TenantDbContext> options)

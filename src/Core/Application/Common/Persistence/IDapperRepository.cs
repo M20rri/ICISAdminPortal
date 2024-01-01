@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace Mukesh.Application.Common.Persistence;
+namespace ICISAdminPortal.Application.Common.Persistence;
 public interface IDapperRepository : ITransientService
 {
     /// <summary>

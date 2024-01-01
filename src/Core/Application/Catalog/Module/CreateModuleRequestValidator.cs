@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Application.Catalog.Module;
+﻿namespace ICISAdminPortal.Application.Catalog.Module;
 internal class CreateModuleRequestValidator : AbstractValidator<CreateModuleRequestDto>
 {
     public CreateModuleRequestValidator()

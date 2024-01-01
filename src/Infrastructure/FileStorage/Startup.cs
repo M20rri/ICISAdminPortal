@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 
-namespace Mukesh.Infrastructure.FileStorage;
+namespace ICISAdminPortal.Infrastructure.FileStorage;
 internal static class Startup
 {
     internal static IApplicationBuilder UseFileStorage(this IApplicationBuilder app) =>

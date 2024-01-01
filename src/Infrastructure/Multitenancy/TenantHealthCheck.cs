@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace Mukesh.Infrastructure.Multitenancy;
+namespace ICISAdminPortal.Infrastructure.Multitenancy;
 public class TenantHealthCheck : IHealthCheck
 {
     public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)

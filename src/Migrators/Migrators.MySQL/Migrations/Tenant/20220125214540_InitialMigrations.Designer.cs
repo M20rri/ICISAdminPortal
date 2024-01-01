@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mukesh.Infrastructure.Multitenancy;
+using ICISAdminPortal.Infrastructure.Multitenancy;
 using System;
 
 #nullable disable
@@ -20,7 +20,7 @@ partial class InitialMigrations
             .HasAnnotation("ProductVersion", "6.0.1")
             .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-        modelBuilder.Entity("Mukesh.Infrastructure.Multitenancy.FSHTenantInfo", b =>
+        modelBuilder.Entity("ICISAdminPortal.Infrastructure.Multitenancy.FSHTenantInfo", b =>
             {
                 b.Property<string>("Id")
                     .HasMaxLength(64)

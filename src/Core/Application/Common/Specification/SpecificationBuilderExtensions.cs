@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Text.Json;
 
-namespace Mukesh.Application.Common.Specification;
+namespace ICISAdminPortal.Application.Common.Specification;
 // See https://github.com/ardalis/Specification/issues/53
 public static class SpecificationBuilderExtensions
 {

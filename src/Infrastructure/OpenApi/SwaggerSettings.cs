@@ -1,4 +1,4 @@
-namespace Mukesh.Infrastructure.OpenApi;
+namespace ICISAdminPortal.Infrastructure.OpenApi;
 
 public class SwaggerSettings
 {

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Mukesh.Infrastructure.Auth.Jwt;
+namespace ICISAdminPortal.Infrastructure.Auth.Jwt;
 public class JwtSettings : IValidatableObject
 {
     public string Key { get; set; } = string.Empty;

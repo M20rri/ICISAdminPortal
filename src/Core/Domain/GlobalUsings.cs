@@ -1,1 +1,1 @@
-﻿global using Mukesh.Domain.Common.Contracts;
+﻿global using ICISAdminPortal.Domain.Common.Contracts;

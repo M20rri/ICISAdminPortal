@@ -1,11 +1,11 @@
 using Dapper;
 using Finbuckle.MultiTenant.EntityFrameworkCore;
-using Mukesh.Application.Common.Persistence;
-using Mukesh.Domain.Common.Contracts;
-using Mukesh.Infrastructure.Persistence.Context;
+using ICISAdminPortal.Application.Common.Persistence;
+using ICISAdminPortal.Domain.Common.Contracts;
+using ICISAdminPortal.Infrastructure.Persistence.Context;
 using System.Data;
 
-namespace Mukesh.Infrastructure.Persistence.Repository;
+namespace ICISAdminPortal.Infrastructure.Persistence.Repository;
 public class DapperRepository : IDapperRepository
 {
     private readonly ApplicationDbContext _dbContext;

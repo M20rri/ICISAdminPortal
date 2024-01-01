@@ -1,8 +1,8 @@
 using Hangfire;
-using Mukesh.Application.Common.Interfaces;
+using ICISAdminPortal.Application.Common.Interfaces;
 using System.Linq.Expressions;
 
-namespace Mukesh.Infrastructure.BackgroundJobs;
+namespace ICISAdminPortal.Infrastructure.BackgroundJobs;
 public class HangfireService : IJobService
 {
     public bool Delete(string jobId) =>

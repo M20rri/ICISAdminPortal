@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mukesh.Infrastructure.Persistence.Context;
+using ICISAdminPortal.Infrastructure.Persistence.Context;
 
 #nullable disable
 
@@ -141,7 +141,7 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.ActionPage", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.ActionPage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -188,7 +188,7 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.Brand", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Brand", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -235,7 +235,7 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.Model", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Model", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -287,7 +287,7 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.Module", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Module", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -337,7 +337,7 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.Page", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Page", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -392,7 +392,7 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.Permission", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Permission", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -452,7 +452,7 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("Mukesh.Infrastructure.Auditing.Trail", b =>
+            modelBuilder.Entity("ICISAdminPortal.Infrastructure.Auditing.Trail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -494,7 +494,7 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("Mukesh.Infrastructure.Identity.ApplicationRole", b =>
+            modelBuilder.Entity("ICISAdminPortal.Infrastructure.Identity.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -531,7 +531,7 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("Mukesh.Infrastructure.Identity.ApplicationRoleClaim", b =>
+            modelBuilder.Entity("ICISAdminPortal.Infrastructure.Identity.ApplicationRoleClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -569,7 +569,7 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("Mukesh.Infrastructure.Identity.ApplicationUser", b =>
+            modelBuilder.Entity("ICISAdminPortal.Infrastructure.Identity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -665,7 +665,7 @@ namespace Migrators.MSSQL.Migrations.Application
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Mukesh.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("ICISAdminPortal.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -674,7 +674,7 @@ namespace Migrators.MSSQL.Migrations.Application
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Mukesh.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("ICISAdminPortal.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -683,13 +683,13 @@ namespace Migrators.MSSQL.Migrations.Application
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Mukesh.Infrastructure.Identity.ApplicationRole", null)
+                    b.HasOne("ICISAdminPortal.Infrastructure.Identity.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Mukesh.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("ICISAdminPortal.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -698,16 +698,16 @@ namespace Migrators.MSSQL.Migrations.Application
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Mukesh.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("ICISAdminPortal.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.Model", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Model", b =>
                 {
-                    b.HasOne("Mukesh.Domain.Catalog.Brand", "Brand")
+                    b.HasOne("ICISAdminPortal.Domain.Catalog.Brand", "Brand")
                         .WithMany("Models")
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -716,9 +716,9 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Navigation("Brand");
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.Page", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Page", b =>
                 {
-                    b.HasOne("Mukesh.Domain.Catalog.Module", "Module")
+                    b.HasOne("ICISAdminPortal.Domain.Catalog.Module", "Module")
                         .WithMany("Pages")
                         .HasForeignKey("ModuleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -727,15 +727,15 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Navigation("Module");
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.Permission", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Permission", b =>
                 {
-                    b.HasOne("Mukesh.Domain.Catalog.ActionPage", "ActionPage")
+                    b.HasOne("ICISAdminPortal.Domain.Catalog.ActionPage", "ActionPage")
                         .WithMany("Permissions")
                         .HasForeignKey("ActionPageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Mukesh.Domain.Catalog.Page", "Page")
+                    b.HasOne("ICISAdminPortal.Domain.Catalog.Page", "Page")
                         .WithMany("Permissions")
                         .HasForeignKey("PageId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -746,31 +746,31 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Navigation("Page");
                 });
 
-            modelBuilder.Entity("Mukesh.Infrastructure.Identity.ApplicationRoleClaim", b =>
+            modelBuilder.Entity("ICISAdminPortal.Infrastructure.Identity.ApplicationRoleClaim", b =>
                 {
-                    b.HasOne("Mukesh.Infrastructure.Identity.ApplicationRole", null)
+                    b.HasOne("ICISAdminPortal.Infrastructure.Identity.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.ActionPage", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.ActionPage", b =>
                 {
                     b.Navigation("Permissions");
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.Brand", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Brand", b =>
                 {
                     b.Navigation("Models");
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.Module", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Module", b =>
                 {
                     b.Navigation("Pages");
                 });
 
-            modelBuilder.Entity("Mukesh.Domain.Catalog.Page", b =>
+            modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Page", b =>
                 {
                     b.Navigation("Permissions");
                 });

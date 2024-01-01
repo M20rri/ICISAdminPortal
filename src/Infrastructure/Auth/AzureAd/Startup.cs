@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
 using Serilog;
 
-namespace Mukesh.Infrastructure.Auth.AzureAd;
+namespace ICISAdminPortal.Infrastructure.Auth.AzureAd;
 internal static class Startup
 {
     internal static IServiceCollection AddAzureAdAuth(this IServiceCollection services, IConfiguration config)

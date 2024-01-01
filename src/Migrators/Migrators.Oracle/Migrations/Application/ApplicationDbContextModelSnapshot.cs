@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mukesh.Infrastructure.Persistence.Context;
+using ICISAdminPortal.Infrastructure.Persistence.Context;
 using Oracle.EntityFrameworkCore.Metadata;
 using System;
 
@@ -22,7 +22,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 
         OracleModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-        modelBuilder.Entity("Mukesh.Domain.Catalog.Brand", b =>
+        modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Brand", b =>
             {
                 b.Property<Guid>("Id")
                     .ValueGeneratedOnAdd()
@@ -66,7 +66,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
                 b.HasAnnotation("Finbuckle:MultiTenant", true);
             });
 
-        modelBuilder.Entity("Mukesh.Domain.Catalog.Product", b =>
+        modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Product", b =>
             {
                 b.Property<Guid>("Id")
                     .ValueGeneratedOnAdd()
@@ -122,7 +122,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
                 b.HasAnnotation("Finbuckle:MultiTenant", true);
             });
 
-        modelBuilder.Entity("Mukesh.Infrastructure.Auditing.Trail", b =>
+        modelBuilder.Entity("ICISAdminPortal.Infrastructure.Auditing.Trail", b =>
             {
                 b.Property<Guid>("Id")
                     .ValueGeneratedOnAdd()
@@ -164,7 +164,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
                 b.HasAnnotation("Finbuckle:MultiTenant", true);
             });
 
-        modelBuilder.Entity("Mukesh.Infrastructure.Identity.ApplicationRole", b =>
+        modelBuilder.Entity("ICISAdminPortal.Infrastructure.Identity.ApplicationRole", b =>
             {
                 b.Property<string>("Id")
                     .HasColumnType("NVARCHAR2(450)");
@@ -201,7 +201,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
                 b.HasAnnotation("Finbuckle:MultiTenant", true);
             });
 
-        modelBuilder.Entity("Mukesh.Infrastructure.Identity.ApplicationRoleClaim", b =>
+        modelBuilder.Entity("ICISAdminPortal.Infrastructure.Identity.ApplicationRoleClaim", b =>
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()
@@ -251,7 +251,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
                 b.HasAnnotation("Finbuckle:MultiTenant", true);
             });
 
-        modelBuilder.Entity("Mukesh.Infrastructure.Identity.ApplicationUser", b =>
+        modelBuilder.Entity("ICISAdminPortal.Infrastructure.Identity.ApplicationUser", b =>
             {
                 b.Property<string>("Id")
                     .HasColumnType("NVARCHAR2(450)");
@@ -463,9 +463,9 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
                 b.HasAnnotation("Finbuckle:MultiTenant", true);
             });
 
-        modelBuilder.Entity("Mukesh.Domain.Catalog.Product", b =>
+        modelBuilder.Entity("ICISAdminPortal.Domain.Catalog.Product", b =>
             {
-                b.HasOne("Mukesh.Domain.Catalog.Brand", "Brand")
+                b.HasOne("ICISAdminPortal.Domain.Catalog.Brand", "Brand")
                     .WithMany()
                     .HasForeignKey("BrandId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -474,9 +474,9 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
                 b.Navigation("Brand");
             });
 
-        modelBuilder.Entity("Mukesh.Infrastructure.Identity.ApplicationRoleClaim", b =>
+        modelBuilder.Entity("ICISAdminPortal.Infrastructure.Identity.ApplicationRoleClaim", b =>
             {
-                b.HasOne("Mukesh.Infrastructure.Identity.ApplicationRole", null)
+                b.HasOne("ICISAdminPortal.Infrastructure.Identity.ApplicationRole", null)
                     .WithMany()
                     .HasForeignKey("RoleId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -485,7 +485,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 
         modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
             {
-                b.HasOne("Mukesh.Infrastructure.Identity.ApplicationUser", null)
+                b.HasOne("ICISAdminPortal.Infrastructure.Identity.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -494,7 +494,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 
         modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
             {
-                b.HasOne("Mukesh.Infrastructure.Identity.ApplicationUser", null)
+                b.HasOne("ICISAdminPortal.Infrastructure.Identity.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -503,13 +503,13 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 
         modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
             {
-                b.HasOne("Mukesh.Infrastructure.Identity.ApplicationRole", null)
+                b.HasOne("ICISAdminPortal.Infrastructure.Identity.ApplicationRole", null)
                     .WithMany()
                     .HasForeignKey("RoleId")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
 
-                b.HasOne("Mukesh.Infrastructure.Identity.ApplicationUser", null)
+                b.HasOne("ICISAdminPortal.Infrastructure.Identity.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -518,7 +518,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 
         modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
             {
-                b.HasOne("Mukesh.Infrastructure.Identity.ApplicationUser", null)
+                b.HasOne("ICISAdminPortal.Infrastructure.Identity.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)

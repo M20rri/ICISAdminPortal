@@ -3,7 +3,7 @@ using Serilog;
 using Serilog.Context;
 using System.Text;
 
-namespace Mukesh.Infrastructure.Middleware;
+namespace ICISAdminPortal.Infrastructure.Middleware;
 public class RequestLoggingMiddleware : IMiddleware
 {
     public async Task InvokeAsync(HttpContext httpContext, RequestDelegate next)

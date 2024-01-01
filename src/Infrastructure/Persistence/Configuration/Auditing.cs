@@ -1,9 +1,9 @@
 ﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mukesh.Infrastructure.Auditing;
+using ICISAdminPortal.Infrastructure.Auditing;
 
-namespace Mukesh.Infrastructure.Persistence.Configuration;
+namespace ICISAdminPortal.Infrastructure.Persistence.Configuration;
 public class AuditTrailConfig : IEntityTypeConfiguration<Trail>
 {
     public void Configure(EntityTypeBuilder<Trail> builder) =>

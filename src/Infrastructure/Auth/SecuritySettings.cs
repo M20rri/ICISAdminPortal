@@ -1,4 +1,4 @@
-namespace Mukesh.Infrastructure.Auth;
+namespace ICISAdminPortal.Infrastructure.Auth;
 
 public class SecuritySettings
 {

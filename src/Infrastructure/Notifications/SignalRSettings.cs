@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Infrastructure.Notifications;
+﻿namespace ICISAdminPortal.Infrastructure.Notifications;
 
 public class SignalRSettings
 {

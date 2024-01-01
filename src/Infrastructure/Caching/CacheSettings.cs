@@ -1,4 +1,4 @@
-namespace Mukesh.Infrastructure.Caching;
+namespace ICISAdminPortal.Infrastructure.Caching;
 
 public class CacheSettings
 {

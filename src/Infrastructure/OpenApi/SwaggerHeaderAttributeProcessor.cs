@@ -3,7 +3,7 @@ using NSwag.Generation.Processors;
 using NSwag.Generation.Processors.Contexts;
 using System.Reflection;
 
-namespace Mukesh.Infrastructure.OpenApi;
+namespace ICISAdminPortal.Infrastructure.OpenApi;
 public class SwaggerHeaderAttributeProcessor : IOperationProcessor
 {
     public bool Process(OperationProcessorContext context)

@@ -1,4 +1,4 @@
-namespace Mukesh.Domain.Common.Events;
+namespace ICISAdminPortal.Domain.Common.Events;
 
 public static class EntityCreatedEvent
 {

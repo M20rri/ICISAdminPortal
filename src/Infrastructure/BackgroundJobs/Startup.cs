@@ -8,10 +8,10 @@ using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Mukesh.Infrastructure.Common;
+using ICISAdminPortal.Infrastructure.Common;
 using Serilog;
 
-namespace Mukesh.Infrastructure.BackgroundJobs;
+namespace ICISAdminPortal.Infrastructure.BackgroundJobs;
 internal static class Startup
 {
     private static readonly ILogger _logger = Log.ForContext(typeof(Startup));

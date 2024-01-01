@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
-using Mukesh.Application.Common.Exceptions;
-using Mukesh.Application.Common.Interfaces;
+using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Application.Common.Interfaces;
 
-namespace Mukesh.Infrastructure.Notifications;
+namespace ICISAdminPortal.Infrastructure.Notifications;
 [Authorize]
 public class NotificationHub : Hub, ITransientService
 {

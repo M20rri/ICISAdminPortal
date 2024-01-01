@@ -3,11 +3,11 @@ using Hangfire.Client;
 using Hangfire.Logging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Mukesh.Infrastructure.Common;
-using Mukesh.Shared.Multitenancy;
+using ICISAdminPortal.Infrastructure.Common;
+using ICISAdminPortal.Shared.Multitenancy;
 using System.Security.Claims;
 
-namespace Mukesh.Infrastructure.BackgroundJobs;
+namespace ICISAdminPortal.Infrastructure.BackgroundJobs;
 public class FSHJobFilter : IClientFilter
 {
     private static readonly ILog Logger = LogProvider.GetCurrentClassLogger();

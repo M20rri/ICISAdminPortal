@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Mukesh.Application.Catalog.Pages;
+namespace ICISAdminPortal.Application.Catalog.Pages;
 
 public record CreatePageRequest(CreatePageRequestDto model) : IRequest<DefaultIdType>;
 

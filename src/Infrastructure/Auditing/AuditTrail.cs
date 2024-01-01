@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Mukesh.Application.Common.Interfaces;
+using ICISAdminPortal.Application.Common.Interfaces;
 
-namespace Mukesh.Infrastructure.Auditing;
+namespace ICISAdminPortal.Infrastructure.Auditing;
 public class AuditTrail
 {
     private readonly ISerializerService _serializer;

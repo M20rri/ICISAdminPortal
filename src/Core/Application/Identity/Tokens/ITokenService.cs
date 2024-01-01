@@ -1,4 +1,4 @@
-namespace Mukesh.Application.Identity.Tokens;
+namespace ICISAdminPortal.Application.Identity.Tokens;
 
 public interface ITokenService : ITransientService
 {

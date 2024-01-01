@@ -1,5 +1,5 @@
 using FluentAssertions;
-using Mukesh.Application.Common.Caching;
+using ICISAdminPortal.Application.Common.Caching;
 using Xunit;
 
 namespace Infrastructure.Test.Caching;

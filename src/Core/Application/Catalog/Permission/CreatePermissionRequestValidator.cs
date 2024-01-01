@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Application.Catalog.Permission;
+﻿namespace ICISAdminPortal.Application.Catalog.Permission;
 internal class CreatePermissionRequestValidator : AbstractValidator<CreatePermissionRequestDto>
 {
     public CreatePermissionRequestValidator()

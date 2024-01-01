@@ -4,7 +4,7 @@ using Hangfire.Server;
 using Hangfire.States;
 using Hangfire.Storage;
 
-namespace Mukesh.Infrastructure.BackgroundJobs;
+namespace ICISAdminPortal.Infrastructure.BackgroundJobs;
 public class LogJobFilter : IClientFilter, IServerFilter, IElectStateFilter, IApplyStateFilter
 {
     private static readonly ILog Logger = LogProvider.GetCurrentClassLogger();

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
-namespace Mukesh.Infrastructure.SecurityHeaders;
+namespace ICISAdminPortal.Infrastructure.SecurityHeaders;
 internal static class Startup
 {
     internal static IApplicationBuilder UseSecurityHeaders(this IApplicationBuilder app, IConfiguration config)

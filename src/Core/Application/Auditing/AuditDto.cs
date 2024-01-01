@@ -1,4 +1,4 @@
-namespace Mukesh.Application.Auditing;
+namespace ICISAdminPortal.Application.Auditing;
 
 public class AuditDto
 {

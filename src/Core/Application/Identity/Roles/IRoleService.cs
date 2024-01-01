@@ -1,6 +1,6 @@
-using Mukesh.Application.Catalog.Permission;
+using ICISAdminPortal.Application.Catalog.Permission;
 
-namespace Mukesh.Application.Identity.Roles;
+namespace ICISAdminPortal.Application.Identity.Roles;
 
 public interface IRoleService : ITransientService
 {

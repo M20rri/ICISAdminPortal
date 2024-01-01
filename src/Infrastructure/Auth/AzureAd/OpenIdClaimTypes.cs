@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Infrastructure.Auth.AzureAd;
+﻿namespace ICISAdminPortal.Infrastructure.Auth.AzureAd;
 
 internal static class OpenIdConnectClaimTypes
 {

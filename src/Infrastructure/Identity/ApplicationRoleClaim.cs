@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace Mukesh.Infrastructure.Identity;
+namespace ICISAdminPortal.Infrastructure.Identity;
 public class ApplicationRoleClaim : IdentityRoleClaim<string>
 {
     public string? CreatedBy { get; init; }

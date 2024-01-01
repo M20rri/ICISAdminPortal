@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Application.Catalog.ActionPage;
+﻿namespace ICISAdminPortal.Application.Catalog.ActionPage;
 public record CreateActionRequest(CreateActionRequestDto model) : IRequest<DefaultIdType>;
 
 public sealed class CreateActionHandler : IRequestHandler<CreateActionRequest, DefaultIdType>

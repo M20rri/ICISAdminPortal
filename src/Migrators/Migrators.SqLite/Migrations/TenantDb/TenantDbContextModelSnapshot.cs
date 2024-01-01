@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mukesh.Infrastructure.Multitenancy;
+using ICISAdminPortal.Infrastructure.Multitenancy;
 using System;
 
 #nullable disable
@@ -16,7 +16,7 @@ partial class TenantDbContextModelSnapshot : ModelSnapshot
 #pragma warning disable 612, 618
         modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
 
-        modelBuilder.Entity("Mukesh.Infrastructure.Multitenancy.FSHTenantInfo", b =>
+        modelBuilder.Entity("ICISAdminPortal.Infrastructure.Multitenancy.FSHTenantInfo", b =>
             {
                 b.Property<string>("Id")
                     .HasMaxLength(64)

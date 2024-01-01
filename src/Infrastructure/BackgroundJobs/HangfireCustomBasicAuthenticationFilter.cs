@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Primitives;
 using System.Net.Http.Headers;
 
-namespace Mukesh.Infrastructure.BackgroundJobs;
+namespace ICISAdminPortal.Infrastructure.BackgroundJobs;
 public class HangfireCustomBasicAuthenticationFilter : IDashboardAuthorizationFilter
 {
     private const string _AuthenticationScheme = "Basic";

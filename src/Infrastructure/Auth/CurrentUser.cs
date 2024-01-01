@@ -1,7 +1,7 @@
-using Mukesh.Application.Common.Interfaces;
+using ICISAdminPortal.Application.Common.Interfaces;
 using System.Security.Claims;
 
-namespace Mukesh.Infrastructure.Auth;
+namespace ICISAdminPortal.Infrastructure.Auth;
 public class CurrentUser : ICurrentUser, ICurrentUserInitializer
 {
     private ClaimsPrincipal? _user;

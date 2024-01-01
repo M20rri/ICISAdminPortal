@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Mukesh.Infrastructure.Common.Extensions;
+namespace ICISAdminPortal.Infrastructure.Common.Extensions;
 public static class TypeExtensions
 {
     public static List<T> GetAllPublicConstantValues<T>(this Type type)

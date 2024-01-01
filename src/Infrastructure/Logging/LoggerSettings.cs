@@ -1,4 +1,4 @@
-namespace Mukesh.Infrastructure.Logging;
+namespace ICISAdminPortal.Infrastructure.Logging;
 
 public class LoggerSettings
 {

@@ -1,4 +1,4 @@
-﻿using Mukesh.Infrastructure.Caching;
+﻿using ICISAdminPortal.Infrastructure.Caching;
 
 namespace Infrastructure.Test.Caching;
 public class LocalCacheServiceTests : CacheServiceTests

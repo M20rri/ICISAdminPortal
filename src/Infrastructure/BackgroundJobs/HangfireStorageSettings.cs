@@ -1,4 +1,4 @@
-namespace Mukesh.Infrastructure.BackgroundJobs;
+namespace ICISAdminPortal.Infrastructure.BackgroundJobs;
 
 public class HangfireStorageSettings
 {

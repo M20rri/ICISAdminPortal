@@ -3,12 +3,12 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Mukesh.Application.Common.Interfaces;
-using Mukesh.Application.Common.Persistence;
-using Mukesh.Infrastructure.Caching;
-using Mukesh.Infrastructure.Common.Services;
-using Mukesh.Infrastructure.Localization;
-using Mukesh.Infrastructure.Persistence.ConnectionString;
+using ICISAdminPortal.Application.Common.Interfaces;
+using ICISAdminPortal.Application.Common.Persistence;
+using ICISAdminPortal.Infrastructure.Caching;
+using ICISAdminPortal.Infrastructure.Common.Services;
+using ICISAdminPortal.Infrastructure.Localization;
+using ICISAdminPortal.Infrastructure.Persistence.ConnectionString;
 
 namespace Infrastructure.Test;
 public class Startup

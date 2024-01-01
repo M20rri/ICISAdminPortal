@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mukesh.Infrastructure.Multitenancy;
+using ICISAdminPortal.Infrastructure.Multitenancy;
 
 #nullable disable
 
@@ -22,7 +22,7 @@ namespace Migrators.MSSQL.Migrations.Tenant
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Mukesh.Infrastructure.Multitenancy.FSHTenantInfo", b =>
+            modelBuilder.Entity("ICISAdminPortal.Infrastructure.Multitenancy.FSHTenantInfo", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(64)

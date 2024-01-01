@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Application.Catalog.ActionPage;
+﻿namespace ICISAdminPortal.Application.Catalog.ActionPage;
 internal class CreateActionRequestValidator : AbstractValidator<CreateActionRequestDto>
 {
     public CreateActionRequestValidator()

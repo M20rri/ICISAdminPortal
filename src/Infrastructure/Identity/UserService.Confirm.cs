@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
-using Mukesh.Application.Common.Exceptions;
-using Mukesh.Infrastructure.Common;
-using Mukesh.Shared.Multitenancy;
+using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Infrastructure.Common;
+using ICISAdminPortal.Shared.Multitenancy;
 using System.Text;
 
-namespace Mukesh.Infrastructure.Identity;
+namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService
 {
     private async Task<string> GetEmailVerificationUriAsync(ApplicationUser user, string origin)

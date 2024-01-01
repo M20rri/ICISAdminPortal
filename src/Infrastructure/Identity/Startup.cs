@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Mukesh.Infrastructure.Persistence.Context;
+using ICISAdminPortal.Infrastructure.Persistence.Context;
 
-namespace Mukesh.Infrastructure.Identity;
+namespace ICISAdminPortal.Infrastructure.Identity;
 internal static class Startup
 {
     internal static IServiceCollection AddIdentity(this IServiceCollection services) =>

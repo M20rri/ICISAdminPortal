@@ -1,6 +1,6 @@
-﻿using Mukesh.Application.Catalog.Module;
+﻿using ICISAdminPortal.Application.Catalog.Module;
 
-namespace Mukesh.Host.Controllers.Catalog;
+namespace ICISAdminPortal.Host.Controllers.Catalog;
 public class ModuleController : VersionedApiController
 {
     [HttpPost]

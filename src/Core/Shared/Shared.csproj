@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <RootNamespace>Mukesh.Shared</RootNamespace>
-        <AssemblyName>Mukesh.Shared</AssemblyName>
+        <RootNamespace>ICISAdminPortal.Shared</RootNamespace>
+        <AssemblyName>ICISAdminPortal.Shared</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Update="Roslynator.Analyzers" Version="4.2.0">

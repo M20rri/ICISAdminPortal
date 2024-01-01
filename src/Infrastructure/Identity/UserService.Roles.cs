@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Mukesh.Application.Common.Exceptions;
-using Mukesh.Application.Identity.Users;
-using Mukesh.Domain.Identity;
-using Mukesh.Shared.Authorization;
-using Mukesh.Shared.Multitenancy;
+using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Application.Identity.Users;
+using ICISAdminPortal.Domain.Identity;
+using ICISAdminPortal.Shared.Authorization;
+using ICISAdminPortal.Shared.Multitenancy;
 
-namespace Mukesh.Infrastructure.Identity;
+namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService
 {
     public async Task<List<UserRoleDto>> GetRolesAsync(string userId, CancellationToken cancellationToken)

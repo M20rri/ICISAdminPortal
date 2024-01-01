@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace Mukesh.Application.Common.Interfaces;
+namespace ICISAdminPortal.Application.Common.Interfaces;
 public interface ICurrentUser
 {
     string? Name { get; }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Mukesh.Infrastructure.Middleware;
+using ICISAdminPortal.Infrastructure.Middleware;
 
-namespace Mukesh.Host.Controllers;
+namespace ICISAdminPortal.Host.Controllers;
 #nullable disable
 #pragma warning disable RCS1163, IDE0060
 

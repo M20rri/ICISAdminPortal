@@ -6,21 +6,21 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
-using Mukesh.Application.Common.Caching;
-using Mukesh.Application.Common.Events;
-using Mukesh.Application.Common.Exceptions;
-using Mukesh.Application.Common.FileStorage;
-using Mukesh.Application.Common.Interfaces;
-using Mukesh.Application.Common.Mailing;
-using Mukesh.Application.Common.Models;
-using Mukesh.Application.Common.Specification;
-using Mukesh.Application.Identity.Users;
-using Mukesh.Domain.Identity;
-using Mukesh.Infrastructure.Auth;
-using Mukesh.Infrastructure.Persistence.Context;
-using Mukesh.Shared.Authorization;
+using ICISAdminPortal.Application.Common.Caching;
+using ICISAdminPortal.Application.Common.Events;
+using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Application.Common.FileStorage;
+using ICISAdminPortal.Application.Common.Interfaces;
+using ICISAdminPortal.Application.Common.Mailing;
+using ICISAdminPortal.Application.Common.Models;
+using ICISAdminPortal.Application.Common.Specification;
+using ICISAdminPortal.Application.Identity.Users;
+using ICISAdminPortal.Domain.Identity;
+using ICISAdminPortal.Infrastructure.Auth;
+using ICISAdminPortal.Infrastructure.Persistence.Context;
+using ICISAdminPortal.Shared.Authorization;
 
-namespace Mukesh.Infrastructure.Identity;
+namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService : IUserService
 {
     private readonly SignInManager<ApplicationUser> _signInManager;

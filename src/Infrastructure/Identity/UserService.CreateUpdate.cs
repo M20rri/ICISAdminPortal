@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
-using Mukesh.Application.Common.Exceptions;
-using Mukesh.Application.Common.Mailing;
-using Mukesh.Application.Identity.Users;
-using Mukesh.Domain.Common;
-using Mukesh.Domain.Identity;
-using Mukesh.Shared.Authorization;
+using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Application.Common.Mailing;
+using ICISAdminPortal.Application.Identity.Users;
+using ICISAdminPortal.Domain.Common;
+using ICISAdminPortal.Domain.Identity;
+using ICISAdminPortal.Shared.Authorization;
 using System.Security.Claims;
 
-namespace Mukesh.Infrastructure.Identity;
+namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService
 {
     /// <summary>

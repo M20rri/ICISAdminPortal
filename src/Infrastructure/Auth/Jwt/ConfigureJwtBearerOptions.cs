@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Mukesh.Application.Common.Exceptions;
+using ICISAdminPortal.Application.Common.Exceptions;
 using System.Security.Claims;
 using System.Text;
 
-namespace Mukesh.Infrastructure.Auth.Jwt;
+namespace ICISAdminPortal.Infrastructure.Auth.Jwt;
 public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions>
 {
     private readonly JwtSettings _jwtSettings;

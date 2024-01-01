@@ -1,9 +1,9 @@
-using Mukesh.Application.Auditing;
-using Mukesh.Application.Identity.Users;
-using Mukesh.Application.Identity.Users.Password;
+using ICISAdminPortal.Application.Auditing;
+using ICISAdminPortal.Application.Identity.Users;
+using ICISAdminPortal.Application.Identity.Users.Password;
 using System.Security.Claims;
 
-namespace Mukesh.Host.Controllers.Identity;
+namespace ICISAdminPortal.Host.Controllers.Identity;
 public class PersonalController : VersionNeutralApiController
 {
     private readonly IUserService _userService;

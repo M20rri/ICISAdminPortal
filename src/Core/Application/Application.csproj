@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <RootNamespace>Mukesh.Application</RootNamespace>
-        <AssemblyName>Mukesh.Application</AssemblyName>
+        <RootNamespace>ICISAdminPortal.Application</RootNamespace>
+        <AssemblyName>ICISAdminPortal.Application</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
       <Compile Remove="Catalog\Brands\**" />

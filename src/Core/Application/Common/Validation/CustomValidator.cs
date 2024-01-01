@@ -1,4 +1,4 @@
-namespace Mukesh.Application.Common.Validation;
+namespace ICISAdminPortal.Application.Common.Validation;
 
 public class CustomValidator<T> : AbstractValidator<T>
 {

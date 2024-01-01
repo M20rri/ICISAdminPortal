@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Application.Catalog.Pages;
+﻿namespace ICISAdminPortal.Application.Catalog.Pages;
 internal class CreatePageRequestValidator : AbstractValidator<CreatePageRequestDto>
 {
     public CreatePageRequestValidator()

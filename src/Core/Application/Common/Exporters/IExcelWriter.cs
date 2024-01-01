@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Application.Common.Exporters;
+﻿namespace ICISAdminPortal.Application.Common.Exporters;
 
 public interface IExcelWriter : ITransientService
 {

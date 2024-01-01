@@ -1,4 +1,4 @@
-namespace Mukesh.Application.Common.Interfaces;
+namespace ICISAdminPortal.Application.Common.Interfaces;
 
 public interface IDto
 {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Mukesh.Application.Common.Events;
-using Mukesh.Application.Identity.Users;
-using Mukesh.Domain.Identity;
+using ICISAdminPortal.Application.Common.Events;
+using ICISAdminPortal.Application.Identity.Users;
+using ICISAdminPortal.Domain.Identity;
 
-namespace Mukesh.Infrastructure.Identity;
+namespace ICISAdminPortal.Infrastructure.Identity;
 internal class InvalidateUserPermissionCacheHandler :
     IEventNotificationHandler<ApplicationUserUpdatedEvent>,
     IEventNotificationHandler<ApplicationRoleUpdatedEvent>

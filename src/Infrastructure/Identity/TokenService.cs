@@ -2,19 +2,19 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Mukesh.Application.Common.Exceptions;
-using Mukesh.Application.Identity.Tokens;
-using Mukesh.Infrastructure.Auth;
-using Mukesh.Infrastructure.Auth.Jwt;
-using Mukesh.Infrastructure.Multitenancy;
-using Mukesh.Shared.Authorization;
-using Mukesh.Shared.Multitenancy;
+using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Application.Identity.Tokens;
+using ICISAdminPortal.Infrastructure.Auth;
+using ICISAdminPortal.Infrastructure.Auth.Jwt;
+using ICISAdminPortal.Infrastructure.Multitenancy;
+using ICISAdminPortal.Shared.Authorization;
+using ICISAdminPortal.Shared.Multitenancy;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Mukesh.Infrastructure.Identity;
+namespace ICISAdminPortal.Infrastructure.Identity;
 internal class TokenService : ITokenService
 {
     private readonly UserManager<ApplicationUser> _userManager;

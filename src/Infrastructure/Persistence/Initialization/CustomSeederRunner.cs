@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Mukesh.Infrastructure.Persistence.Initialization;
+namespace ICISAdminPortal.Infrastructure.Persistence.Initialization;
 internal class CustomSeederRunner
 {
     private readonly ICustomSeeder[] _seeders;

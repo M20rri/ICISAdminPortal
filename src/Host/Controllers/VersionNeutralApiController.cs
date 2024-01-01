@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Host.Controllers;
+﻿namespace ICISAdminPortal.Host.Controllers;
 
 [Route("api/[controller]")]
 [ApiVersionNeutral]

@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
-using Mukesh.Application.Common.Exceptions;
-using Mukesh.Application.Common.Interfaces;
+using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Application.Common.Interfaces;
 using Serilog;
 using Serilog.Context;
 using System.Net;
 
-namespace Mukesh.Infrastructure.Middleware;
+namespace ICISAdminPortal.Infrastructure.Middleware;
 internal class ExceptionMiddleware : IMiddleware
 {
     private readonly ICurrentUser _currentUser;

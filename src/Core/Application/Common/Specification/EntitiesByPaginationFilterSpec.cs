@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Application.Common.Specification;
+﻿namespace ICISAdminPortal.Application.Common.Specification;
 
 public class EntitiesByPaginationFilterSpec<T, TResult> : EntitiesByBaseFilterSpec<T, TResult>
 {

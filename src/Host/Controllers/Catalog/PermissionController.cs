@@ -1,6 +1,6 @@
-﻿using Mukesh.Application.Catalog.Permission;
+﻿using ICISAdminPortal.Application.Catalog.Permission;
 
-namespace Mukesh.Host.Controllers.Catalog;
+namespace ICISAdminPortal.Host.Controllers.Catalog;
 public class PermissionController : VersionedApiController
 {
     public Task<Guid> CreateAsync(CreatePermissionRequest request)

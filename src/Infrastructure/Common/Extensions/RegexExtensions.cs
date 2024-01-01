@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Mukesh.Infrastructure.Common.Extensions;
+namespace ICISAdminPortal.Infrastructure.Common.Extensions;
 public static class RegexExtensions
 {
     private static readonly Regex Whitespace = new(@"\s+");

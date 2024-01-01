@@ -1,4 +1,4 @@
-namespace Mukesh.Application.Common.FileStorage;
+namespace ICISAdminPortal.Application.Common.FileStorage;
 
 public interface IFileStorageService : ITransientService
 {

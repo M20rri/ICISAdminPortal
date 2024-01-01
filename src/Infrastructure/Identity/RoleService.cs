@@ -3,17 +3,17 @@ using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
-using Mukesh.Application.Catalog.Permission;
-using Mukesh.Application.Common.Events;
-using Mukesh.Application.Common.Exceptions;
-using Mukesh.Application.Common.Interfaces;
-using Mukesh.Application.Identity.Roles;
-using Mukesh.Domain.Identity;
-using Mukesh.Infrastructure.Persistence.Context;
-using Mukesh.Shared.Authorization;
-using Mukesh.Shared.Multitenancy;
+using ICISAdminPortal.Application.Catalog.Permission;
+using ICISAdminPortal.Application.Common.Events;
+using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Application.Common.Interfaces;
+using ICISAdminPortal.Application.Identity.Roles;
+using ICISAdminPortal.Domain.Identity;
+using ICISAdminPortal.Infrastructure.Persistence.Context;
+using ICISAdminPortal.Shared.Authorization;
+using ICISAdminPortal.Shared.Multitenancy;
 
-namespace Mukesh.Infrastructure.Identity;
+namespace ICISAdminPortal.Infrastructure.Identity;
 internal class RoleService : IRoleService
 {
     private readonly RoleManager<ApplicationRole> _roleManager;

@@ -1,12 +1,12 @@
 using Finbuckle.MultiTenant;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Mukesh.Application.Common.Events;
-using Mukesh.Application.Common.Interfaces;
-using Mukesh.Domain.Catalog;
-using Mukesh.Infrastructure.Persistence.Configuration;
+using ICISAdminPortal.Application.Common.Events;
+using ICISAdminPortal.Application.Common.Interfaces;
+using ICISAdminPortal.Domain.Catalog;
+using ICISAdminPortal.Infrastructure.Persistence.Configuration;
 
-namespace Mukesh.Infrastructure.Persistence.Context;
+namespace ICISAdminPortal.Infrastructure.Persistence.Context;
 public class ApplicationDbContext : BaseDbContext
 {
     public ApplicationDbContext(ITenantInfo currentTenant, DbContextOptions options, ICurrentUser currentUser, ISerializerService serializer, IOptions<DatabaseSettings> dbSettings, IEventPublisher events)

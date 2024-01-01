@@ -2,17 +2,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Mukesh.Application.Common.Persistence;
-using Mukesh.Domain.Common.Contracts;
-using Mukesh.Infrastructure.Common;
-using Mukesh.Infrastructure.Persistence.ConnectionString;
-using Mukesh.Infrastructure.Persistence.Context;
-using Mukesh.Infrastructure.Persistence.Initialization;
-using Mukesh.Infrastructure.Persistence.Repository;
+using ICISAdminPortal.Application.Common.Persistence;
+using ICISAdminPortal.Domain.Common.Contracts;
+using ICISAdminPortal.Infrastructure.Common;
+using ICISAdminPortal.Infrastructure.Persistence.ConnectionString;
+using ICISAdminPortal.Infrastructure.Persistence.Context;
+using ICISAdminPortal.Infrastructure.Persistence.Initialization;
+using ICISAdminPortal.Infrastructure.Persistence.Repository;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Serilog;
 
-namespace Mukesh.Infrastructure.Persistence;
+namespace ICISAdminPortal.Infrastructure.Persistence;
 internal static class Startup
 {
     private static readonly ILogger _logger = Log.ForContext(typeof(Startup));

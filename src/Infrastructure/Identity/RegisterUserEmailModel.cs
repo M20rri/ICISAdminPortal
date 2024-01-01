@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Infrastructure.Identity;
+﻿namespace ICISAdminPortal.Infrastructure.Identity;
 
 public class RegisterUserEmailModel
 {

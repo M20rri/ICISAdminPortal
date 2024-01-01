@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Http;
-using Mukesh.Application.Common.Interfaces;
+using ICISAdminPortal.Application.Common.Interfaces;
 using Serilog;
 using Serilog.Context;
 
-namespace Mukesh.Infrastructure.Middleware;
+namespace ICISAdminPortal.Infrastructure.Middleware;
 public class ResponseLoggingMiddleware : IMiddleware
 {
     private readonly ICurrentUser _currentUser;

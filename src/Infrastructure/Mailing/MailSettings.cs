@@ -1,4 +1,4 @@
-namespace Mukesh.Infrastructure.Mailing;
+namespace ICISAdminPortal.Infrastructure.Mailing;
 
 public class MailSettings
 {

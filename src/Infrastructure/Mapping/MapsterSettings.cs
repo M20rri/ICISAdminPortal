@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Infrastructure.Mapping;
+﻿namespace ICISAdminPortal.Infrastructure.Mapping;
 
 public class MapsterSettings
 {

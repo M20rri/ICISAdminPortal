@@ -1,4 +1,4 @@
-﻿using Mukesh.Infrastructure.Persistence;
+﻿using ICISAdminPortal.Infrastructure.Persistence;
 using System.ComponentModel.DataAnnotations;
 using Xunit;
 

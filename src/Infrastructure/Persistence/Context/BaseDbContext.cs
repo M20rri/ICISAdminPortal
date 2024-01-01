@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Options;
-using Mukesh.Application.Common.Events;
-using Mukesh.Application.Common.Interfaces;
-using Mukesh.Domain.Common.Contracts;
-using Mukesh.Infrastructure.Auditing;
-using Mukesh.Infrastructure.Identity;
+using ICISAdminPortal.Application.Common.Events;
+using ICISAdminPortal.Application.Common.Interfaces;
+using ICISAdminPortal.Domain.Common.Contracts;
+using ICISAdminPortal.Infrastructure.Auditing;
+using ICISAdminPortal.Infrastructure.Identity;
 using System.Data;
 
-namespace Mukesh.Infrastructure.Persistence.Context;
+namespace ICISAdminPortal.Infrastructure.Persistence.Context;
 public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUser, ApplicationRole, string, IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, ApplicationRoleClaim, IdentityUserToken<string>>
 {
     protected readonly ICurrentUser _currentUser;

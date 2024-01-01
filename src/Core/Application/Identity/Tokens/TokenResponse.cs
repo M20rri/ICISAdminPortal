@@ -1,3 +1,3 @@
-namespace Mukesh.Application.Identity.Tokens;
+namespace ICISAdminPortal.Application.Identity.Tokens;
 
 public record TokenResponse(string Token, string RefreshToken, DateTime RefreshTokenExpiryTime);

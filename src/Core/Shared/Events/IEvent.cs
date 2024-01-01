@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Shared.Events;
+﻿namespace ICISAdminPortal.Shared.Events;
 
 public interface IEvent
 {

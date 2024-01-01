@@ -1,4 +1,4 @@
-using Mukesh.Infrastructure.Auth.AzureAd;
+using ICISAdminPortal.Infrastructure.Auth.AzureAd;
 
 namespace System.Security.Claims;
 public static class GetIssuerExtension

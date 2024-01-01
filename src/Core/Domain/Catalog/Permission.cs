@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Domain.Catalog;
+﻿namespace ICISAdminPortal.Domain.Catalog;
 public class Permission : BaseTypeEntity, IAggregateRoot
 {
     public Guid ActionPageId { get; set; }

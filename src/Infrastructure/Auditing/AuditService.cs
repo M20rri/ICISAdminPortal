@@ -1,9 +1,9 @@
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using Mukesh.Application.Auditing;
-using Mukesh.Infrastructure.Persistence.Context;
+using ICISAdminPortal.Application.Auditing;
+using ICISAdminPortal.Infrastructure.Persistence.Context;
 
-namespace Mukesh.Infrastructure.Auditing;
+namespace ICISAdminPortal.Infrastructure.Auditing;
 public class AuditService : IAuditService
 {
     private readonly ApplicationDbContext _context;

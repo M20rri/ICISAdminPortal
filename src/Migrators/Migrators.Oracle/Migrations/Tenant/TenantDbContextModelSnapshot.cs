@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mukesh.Infrastructure.Multitenancy;
+using ICISAdminPortal.Infrastructure.Multitenancy;
 using Oracle.EntityFrameworkCore.Metadata;
 using System;
 
@@ -21,7 +21,7 @@ partial class TenantDbContextModelSnapshot : ModelSnapshot
 
         OracleModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-        modelBuilder.Entity("Mukesh.Infrastructure.Multitenancy.FSHTenantInfo", b =>
+        modelBuilder.Entity("ICISAdminPortal.Infrastructure.Multitenancy.FSHTenantInfo", b =>
             {
                 b.Property<string>("Id")
                     .HasMaxLength(64)

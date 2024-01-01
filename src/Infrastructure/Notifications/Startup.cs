@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
-namespace Mukesh.Infrastructure.Notifications;
+namespace ICISAdminPortal.Infrastructure.Notifications;
 internal static class Startup
 {
     internal static IServiceCollection AddNotifications(this IServiceCollection services, IConfiguration config)

@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Mukesh.Domain.Catalog;
-using Mukesh.Infrastructure.Identity;
-using Mukesh.Infrastructure.Multitenancy;
-using Mukesh.Infrastructure.Persistence.Context;
-using Mukesh.Shared.Authorization;
+using ICISAdminPortal.Domain.Catalog;
+using ICISAdminPortal.Infrastructure.Identity;
+using ICISAdminPortal.Infrastructure.Multitenancy;
+using ICISAdminPortal.Infrastructure.Persistence.Context;
+using ICISAdminPortal.Shared.Authorization;
 
-namespace Mukesh.Infrastructure.Persistence.Initialization;
+namespace ICISAdminPortal.Infrastructure.Persistence.Initialization;
 internal class ApplicationDbSeeder
 {
     private readonly FSHTenantInfo _currentTenant;

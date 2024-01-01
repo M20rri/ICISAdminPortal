@@ -1,4 +1,4 @@
-using Mukesh.Shared.Authorization;
+using ICISAdminPortal.Shared.Authorization;
 
 namespace System.Security.Claims;
 public static class ClaimsPrincipalExtensions

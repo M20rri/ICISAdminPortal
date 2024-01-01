@@ -4,34 +4,34 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Mukesh.Infrastructure.Auth;
-using Mukesh.Infrastructure.BackgroundJobs;
-using Mukesh.Infrastructure.Caching;
-using Mukesh.Infrastructure.Common;
-using Mukesh.Infrastructure.Cors;
-using Mukesh.Infrastructure.FileStorage;
-using Mukesh.Infrastructure.Localization;
-using Mukesh.Infrastructure.Mailing;
-using Mukesh.Infrastructure.Mapping;
-using Mukesh.Infrastructure.Middleware;
-using Mukesh.Infrastructure.Multitenancy;
-using Mukesh.Infrastructure.Notifications;
-using Mukesh.Infrastructure.OpenApi;
-using Mukesh.Infrastructure.Persistence;
-using Mukesh.Infrastructure.Persistence.Initialization;
-using Mukesh.Infrastructure.SecurityHeaders;
-using Mukesh.Infrastructure.Validations;
+using ICISAdminPortal.Infrastructure.Auth;
+using ICISAdminPortal.Infrastructure.BackgroundJobs;
+using ICISAdminPortal.Infrastructure.Caching;
+using ICISAdminPortal.Infrastructure.Common;
+using ICISAdminPortal.Infrastructure.Cors;
+using ICISAdminPortal.Infrastructure.FileStorage;
+using ICISAdminPortal.Infrastructure.Localization;
+using ICISAdminPortal.Infrastructure.Mailing;
+using ICISAdminPortal.Infrastructure.Mapping;
+using ICISAdminPortal.Infrastructure.Middleware;
+using ICISAdminPortal.Infrastructure.Multitenancy;
+using ICISAdminPortal.Infrastructure.Notifications;
+using ICISAdminPortal.Infrastructure.OpenApi;
+using ICISAdminPortal.Infrastructure.Persistence;
+using ICISAdminPortal.Infrastructure.Persistence.Initialization;
+using ICISAdminPortal.Infrastructure.SecurityHeaders;
+using ICISAdminPortal.Infrastructure.Validations;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Infrastructure.Test")]
 
-namespace Mukesh.Infrastructure;
+namespace ICISAdminPortal.Infrastructure;
 public static class Startup
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
-        var applicationAssembly = typeof(Mukesh.Application.Startup).GetTypeInfo().Assembly;
+        var applicationAssembly = typeof(ICISAdminPortal.Application.Startup).GetTypeInfo().Assembly;
         MapsterSettings.Configure();
         return services
             .AddApiVersioning()

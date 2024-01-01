@@ -2,12 +2,12 @@
 using Ardalis.Specification.EntityFrameworkCore;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using Mukesh.Application.Common.Persistence;
-using Mukesh.Domain.Common.Contracts;
-using Mukesh.Infrastructure.Persistence.Context;
+using ICISAdminPortal.Application.Common.Persistence;
+using ICISAdminPortal.Domain.Common.Contracts;
+using ICISAdminPortal.Infrastructure.Persistence.Context;
 using System.Linq.Expressions;
 
-namespace Mukesh.Infrastructure.Persistence.Repository;
+namespace ICISAdminPortal.Infrastructure.Persistence.Repository;
 // Inherited from Ardalis.Specification's RepositoryBase<T>
 public class ApplicationDbRepository<T> : RepositoryBase<T>, IReadRepository<T>, IRepository<T>
     where T : class, IAggregateRoot

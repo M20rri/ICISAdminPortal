@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 
-namespace Mukesh.Infrastructure.Common.Extensions;
+namespace ICISAdminPortal.Infrastructure.Common.Extensions;
 public static class EnumExtensions
 {
     public static string GetDescription(this Enum enumValue)

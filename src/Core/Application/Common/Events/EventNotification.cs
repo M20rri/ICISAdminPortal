@@ -1,6 +1,6 @@
-using Mukesh.Shared.Events;
+using ICISAdminPortal.Shared.Events;
 
-namespace Mukesh.Application.Common.Events;
+namespace ICISAdminPortal.Application.Common.Events;
 public class EventNotification<TEvent> : INotification
     where TEvent : IEvent
 {

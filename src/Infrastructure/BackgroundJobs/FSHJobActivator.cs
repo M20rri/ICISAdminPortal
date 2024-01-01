@@ -2,12 +2,12 @@
 using Hangfire;
 using Hangfire.Server;
 using Microsoft.Extensions.DependencyInjection;
-using Mukesh.Infrastructure.Auth;
-using Mukesh.Infrastructure.Common;
-using Mukesh.Infrastructure.Multitenancy;
-using Mukesh.Shared.Multitenancy;
+using ICISAdminPortal.Infrastructure.Auth;
+using ICISAdminPortal.Infrastructure.Common;
+using ICISAdminPortal.Infrastructure.Multitenancy;
+using ICISAdminPortal.Shared.Multitenancy;
 
-namespace Mukesh.Infrastructure.BackgroundJobs;
+namespace ICISAdminPortal.Infrastructure.BackgroundJobs;
 public class FSHJobActivator : JobActivator
 {
     private readonly IServiceScopeFactory _scopeFactory;

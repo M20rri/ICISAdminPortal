@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Primitives;
 using System.Text;
 
-namespace Mukesh.Infrastructure.Common.Extensions;
+namespace ICISAdminPortal.Infrastructure.Common.Extensions;
 public class PathExtensions
 {
     public static readonly char[] PathSeparators = new[] { '/', '\\' };

@@ -9,7 +9,7 @@ using Serilog.Exceptions;
 using Serilog.Formatting.Compact;
 using System.Reflection;
 
-namespace Mukesh.Infrastructure.Logging.Serilog;
+namespace ICISAdminPortal.Infrastructure.Logging.Serilog;
 public static class Extensions
 {
     public static void RegisterSerilog(this WebApplicationBuilder builder)

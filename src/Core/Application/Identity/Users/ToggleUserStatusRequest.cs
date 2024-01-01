@@ -1,4 +1,4 @@
-namespace Mukesh.Application.Identity.Users;
+namespace ICISAdminPortal.Application.Identity.Users;
 
 public class ToggleUserStatusRequest
 {

@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mukesh.Infrastructure.Identity;
+using ICISAdminPortal.Infrastructure.Identity;
 
-namespace Mukesh.Infrastructure.Persistence.Configuration;
+namespace ICISAdminPortal.Infrastructure.Persistence.Configuration;
 public class ApplicationUserConfig : IEntityTypeConfiguration<ApplicationUser>
 {
     public void Configure(EntityTypeBuilder<ApplicationUser> builder)

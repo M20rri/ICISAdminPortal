@@ -1,6 +1,6 @@
-using Mukesh.Application.Identity.Tokens;
+using ICISAdminPortal.Application.Identity.Tokens;
 
-namespace Mukesh.Host.Controllers.Identity;
+namespace ICISAdminPortal.Host.Controllers.Identity;
 public sealed class TokensController : VersionNeutralApiController
 {
     private readonly ITokenService _tokenService;

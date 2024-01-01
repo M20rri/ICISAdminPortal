@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace Mukesh.Application.Common.Interfaces;
+namespace ICISAdminPortal.Application.Common.Interfaces;
 public interface IJobService : ITransientService
 {
     string Enqueue(Expression<Action> methodCall);

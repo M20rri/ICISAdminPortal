@@ -1,10 +1,10 @@
-using Mukesh.Application.Common.FileStorage;
-using Mukesh.Domain.Common;
-using Mukesh.Infrastructure.Common.Extensions;
+using ICISAdminPortal.Application.Common.FileStorage;
+using ICISAdminPortal.Domain.Common;
+using ICISAdminPortal.Infrastructure.Common.Extensions;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
-namespace Mukesh.Infrastructure.FileStorage;
+namespace ICISAdminPortal.Infrastructure.FileStorage;
 public class LocalFileStorageService : IFileStorageService
 {
     public async Task<string> UploadAsync<T>(FileUploadRequest? request, FileType supportedFileType, CancellationToken cancellationToken = default)

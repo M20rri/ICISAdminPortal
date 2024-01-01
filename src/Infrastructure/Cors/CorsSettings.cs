@@ -1,4 +1,4 @@
-namespace Mukesh.Infrastructure.Common.Settings;
+namespace ICISAdminPortal.Infrastructure.Common.Settings;
 
 public class CorsSettings
 {

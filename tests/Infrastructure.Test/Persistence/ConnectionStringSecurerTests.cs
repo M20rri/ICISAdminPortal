@@ -1,7 +1,7 @@
-﻿using Mukesh.Application.Common.Persistence;
+﻿using ICISAdminPortal.Application.Common.Persistence;
 using Xunit;
 
-namespace Mukesh.Infrastructure.Persistence.Tests;
+namespace ICISAdminPortal.Infrastructure.Persistence.Tests;
 public class ConnectionStringSecurerTests
 {
     private const string Mssql = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=fullStackHeroDb;MultipleActiveResultSets=True;";

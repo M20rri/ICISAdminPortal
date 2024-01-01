@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace Mukesh.Infrastructure.Auth.Jwt;
+namespace ICISAdminPortal.Infrastructure.Auth.Jwt;
 internal static class Startup
 {
     internal static IServiceCollection AddJwtAuth(this IServiceCollection services)

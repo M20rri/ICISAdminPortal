@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace Mukesh.Infrastructure.Auth;
+namespace ICISAdminPortal.Infrastructure.Auth;
 public interface ICurrentUserInitializer
 {
     void SetCurrentUser(ClaimsPrincipal user);

@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Domain.Common.Contracts;
+﻿namespace ICISAdminPortal.Domain.Common.Contracts;
 
 // Apply this marker interface only to aggregate root entities
 // Repositories will only work with aggregate roots, not their children

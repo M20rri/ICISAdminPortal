@@ -1,4 +1,4 @@
-namespace Mukesh.Domain.Common.Contracts;
+namespace ICISAdminPortal.Domain.Common.Contracts;
 
 public interface ISoftDelete
 {

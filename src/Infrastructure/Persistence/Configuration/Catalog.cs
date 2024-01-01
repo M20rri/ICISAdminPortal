@@ -1,9 +1,9 @@
 ﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mukesh.Domain.Catalog;
+using ICISAdminPortal.Domain.Catalog;
 
-namespace Mukesh.Infrastructure.Persistence.Configuration;
+namespace ICISAdminPortal.Infrastructure.Persistence.Configuration;
 public class BrandConfig : IEntityTypeConfiguration<Brand>
 {
     public void Configure(EntityTypeBuilder<Brand> builder)

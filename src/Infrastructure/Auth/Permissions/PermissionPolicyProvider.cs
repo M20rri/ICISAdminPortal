@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
-using Mukesh.Shared.Authorization;
+using ICISAdminPortal.Shared.Authorization;
 
-namespace Mukesh.Infrastructure.Auth.Permissions;
+namespace ICISAdminPortal.Infrastructure.Auth.Permissions;
 internal class PermissionPolicyProvider : IAuthorizationPolicyProvider
 {
     public DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; }

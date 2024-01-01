@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Infrastructure.SecurityHeaders;
+﻿namespace ICISAdminPortal.Infrastructure.SecurityHeaders;
 
 internal class HeaderNames
 {

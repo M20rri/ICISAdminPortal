@@ -1,7 +1,7 @@
-using Mukesh.Application.Catalog.Permission;
-using Mukesh.Application.Identity.Roles;
+using ICISAdminPortal.Application.Catalog.Permission;
+using ICISAdminPortal.Application.Identity.Roles;
 
-namespace Mukesh.Host.Controllers.Identity;
+namespace ICISAdminPortal.Host.Controllers.Identity;
 public class RolesController : VersionNeutralApiController
 {
     private readonly IRoleService _roleService;

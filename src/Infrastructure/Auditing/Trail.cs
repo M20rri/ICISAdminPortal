@@ -1,6 +1,6 @@
-using Mukesh.Domain.Common.Contracts;
+using ICISAdminPortal.Domain.Common.Contracts;
 
-namespace Mukesh.Infrastructure.Auditing;
+namespace ICISAdminPortal.Infrastructure.Auditing;
 public class Trail : BaseEntity
 {
     public Guid UserId { get; set; }

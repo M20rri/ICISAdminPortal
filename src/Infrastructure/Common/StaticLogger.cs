@@ -1,6 +1,6 @@
 using Serilog;
 
-namespace Mukesh.Infrastructure.Common;
+namespace ICISAdminPortal.Infrastructure.Common;
 public static class StaticLogger
 {
     public static void EnsureInitialized()

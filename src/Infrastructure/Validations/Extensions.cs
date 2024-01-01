@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Mukesh.Infrastructure.Validations;
+namespace ICISAdminPortal.Infrastructure.Validations;
 public static class Extensions
 {
     public static IServiceCollection AddBehaviours(this IServiceCollection services, Assembly assemblyContainingValidators)

@@ -1,14 +1,14 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Options;
-using Mukesh.Application.Common.Persistence;
-using Mukesh.Infrastructure.Common;
+using ICISAdminPortal.Application.Common.Persistence;
+using ICISAdminPortal.Infrastructure.Common;
 using MySqlConnector;
 using Npgsql;
 using Oracle.ManagedDataAccess.Client;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
 
-namespace Mukesh.Infrastructure.Persistence.ConnectionString;
+namespace ICISAdminPortal.Infrastructure.Persistence.ConnectionString;
 public class ConnectionStringSecurer : IConnectionStringSecurer
 {
     private const string HiddenValueDefault = "*******";

@@ -1,4 +1,4 @@
-namespace Mukesh.Application.Common.Mailing;
+namespace ICISAdminPortal.Application.Common.Mailing;
 
 public class MailRequest
 {

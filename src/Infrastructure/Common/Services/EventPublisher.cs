@@ -1,9 +1,9 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Mukesh.Application.Common.Events;
-using Mukesh.Shared.Events;
+using ICISAdminPortal.Application.Common.Events;
+using ICISAdminPortal.Shared.Events;
 
-namespace Mukesh.Infrastructure.Common.Services;
+namespace ICISAdminPortal.Infrastructure.Common.Services;
 public class EventPublisher : IEventPublisher
 {
     private readonly ILogger<EventPublisher> _logger;

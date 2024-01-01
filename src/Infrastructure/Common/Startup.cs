@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Mukesh.Application.Common.Interfaces;
+using ICISAdminPortal.Application.Common.Interfaces;
 
-namespace Mukesh.Infrastructure.Common;
+namespace ICISAdminPortal.Infrastructure.Common;
 internal static class Startup
 {
     internal static IServiceCollection AddServices(this IServiceCollection services) =>

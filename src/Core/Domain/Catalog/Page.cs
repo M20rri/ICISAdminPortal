@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Domain.Catalog;
+﻿namespace ICISAdminPortal.Domain.Catalog;
 public class Page : BaseTypeEntity, IAggregateRoot
 {
     public DefaultIdType ModuleId { get; set; }

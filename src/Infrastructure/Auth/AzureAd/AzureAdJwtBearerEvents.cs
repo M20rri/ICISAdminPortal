@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
-using Mukesh.Application.Common.Exceptions;
-using Mukesh.Application.Identity.Users;
-using Mukesh.Infrastructure.Multitenancy;
-using Mukesh.Shared.Authorization;
-using Mukesh.Shared.Multitenancy;
+using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Application.Identity.Users;
+using ICISAdminPortal.Infrastructure.Multitenancy;
+using ICISAdminPortal.Shared.Authorization;
+using ICISAdminPortal.Shared.Multitenancy;
 using Serilog;
 using System.Security.Claims;
 
-namespace Mukesh.Infrastructure.Auth.AzureAd;
+namespace ICISAdminPortal.Infrastructure.Auth.AzureAd;
 internal class AzureAdJwtBearerEvents : JwtBearerEvents
 {
     private readonly ILogger _logger;

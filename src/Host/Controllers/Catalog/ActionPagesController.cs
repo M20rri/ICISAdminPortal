@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Mukesh.Application.Catalog.ActionPage;
-using Mukesh.Application.Catalog.Module;
+using ICISAdminPortal.Application.Catalog.ActionPage;
+using ICISAdminPortal.Application.Catalog.Module;
 
-namespace Mukesh.Host.Controllers.Catalog;
+namespace ICISAdminPortal.Host.Controllers.Catalog;
 public class ActionPagesController : VersionedApiController
 {
     public Task<Guid> CreateAsync(CreateActionRequest request)

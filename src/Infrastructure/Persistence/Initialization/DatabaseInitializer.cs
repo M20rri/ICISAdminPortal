@@ -2,10 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Mukesh.Infrastructure.Multitenancy;
-using Mukesh.Shared.Multitenancy;
+using ICISAdminPortal.Infrastructure.Multitenancy;
+using ICISAdminPortal.Shared.Multitenancy;
 
-namespace Mukesh.Infrastructure.Persistence.Initialization;
+namespace ICISAdminPortal.Infrastructure.Persistence.Initialization;
 internal class DatabaseInitializer : IDatabaseInitializer
 {
     private readonly TenantDbContext _tenantDbContext;

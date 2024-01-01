@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Application.Catalog.Permission;
+﻿namespace ICISAdminPortal.Application.Catalog.Permission;
 
 public record CreatePermissionRequest(CreatePermissionRequestDto model) : IRequest<DefaultIdType>;
 

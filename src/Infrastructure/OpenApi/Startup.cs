@@ -9,7 +9,7 @@ using NSwag.AspNetCore;
 using NSwag.Generation.Processors.Security;
 using ZymLabs.NSwag.FluentValidation;
 
-namespace Mukesh.Infrastructure.OpenApi;
+namespace ICISAdminPortal.Infrastructure.OpenApi;
 internal static class Startup
 {
     internal static IServiceCollection AddOpenApiDocumentation(this IServiceCollection services, IConfiguration config)

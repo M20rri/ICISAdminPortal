@@ -1,4 +1,4 @@
-namespace Mukesh.Host.Configurations;
+namespace ICISAdminPortal.Host.Configurations;
 
 internal static class Startup
 {

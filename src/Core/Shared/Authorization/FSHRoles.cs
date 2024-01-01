@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace Mukesh.Shared.Authorization;
+namespace ICISAdminPortal.Shared.Authorization;
 public static class FSHRoles
 {
     public const string Basic = nameof(Basic);

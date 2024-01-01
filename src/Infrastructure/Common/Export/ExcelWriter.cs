@@ -1,9 +1,9 @@
 ﻿using ClosedXML.Excel;
-using Mukesh.Application.Common.Exporters;
+using ICISAdminPortal.Application.Common.Exporters;
 using System.ComponentModel;
 using System.Data;
 
-namespace Mukesh.Infrastructure.Common.Export;
+namespace ICISAdminPortal.Infrastructure.Common.Export;
 public class ExcelWriter : IExcelWriter
 {
     public Stream WriteToStream<T>(IList<T> data)

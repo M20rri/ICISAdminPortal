@@ -1,6 +1,6 @@
-using Mukesh.Application.Multitenancy;
+using ICISAdminPortal.Application.Multitenancy;
 
-namespace Mukesh.Host.Controllers.Multitenancy;
+namespace ICISAdminPortal.Host.Controllers.Multitenancy;
 public class TenantsController : VersionNeutralApiController
 {
     [HttpGet]

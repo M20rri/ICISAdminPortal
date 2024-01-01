@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Domain.Identity;
+﻿namespace ICISAdminPortal.Domain.Identity;
 
 public abstract class ApplicationRoleEvent : DomainEvent
 {

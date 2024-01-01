@@ -1,6 +1,6 @@
-using Mukesh.Shared.Events;
+using ICISAdminPortal.Shared.Events;
 
-namespace Mukesh.Domain.Common.Contracts;
+namespace ICISAdminPortal.Domain.Common.Contracts;
 public abstract class DomainEvent : IEvent
 {
     public DateTime TriggeredOn { get; protected set; } = DateTime.UtcNow;

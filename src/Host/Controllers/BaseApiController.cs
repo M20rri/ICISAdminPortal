@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Mukesh.Host.Controllers;
+namespace ICISAdminPortal.Host.Controllers;
 [ApiController]
 public class BaseApiController : ControllerBase
 {

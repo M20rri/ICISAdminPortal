@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Mukesh.Infrastructure.Middleware;
+namespace ICISAdminPortal.Infrastructure.Middleware;
 internal static class Startup
 {
     internal static IServiceCollection AddExceptionMiddleware(this IServiceCollection services) =>

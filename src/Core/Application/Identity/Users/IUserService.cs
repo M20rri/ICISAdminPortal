@@ -1,7 +1,7 @@
-using Mukesh.Application.Identity.Users.Password;
+using ICISAdminPortal.Application.Identity.Users.Password;
 using System.Security.Claims;
 
-namespace Mukesh.Application.Identity.Users;
+namespace ICISAdminPortal.Application.Identity.Users;
 public interface IUserService : ITransientService
 {
     Task<PaginationResponse<UserDetailsDto>> SearchAsync(UserListFilter filter, CancellationToken cancellationToken);

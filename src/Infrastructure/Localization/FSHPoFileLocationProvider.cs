@@ -2,10 +2,10 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
-using Mukesh.Infrastructure.Common.Extensions;
+using ICISAdminPortal.Infrastructure.Common.Extensions;
 using OrchardCore.Localization;
 
-namespace Mukesh.Infrastructure.Localization;
+namespace ICISAdminPortal.Infrastructure.Localization;
 /// <summary>
 /// Provides PO files for FSH Localization.
 /// </summary>

@@ -3,9 +3,9 @@ using MailKit.Security;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using Mukesh.Application.Common.Mailing;
+using ICISAdminPortal.Application.Common.Mailing;
 
-namespace Mukesh.Infrastructure.Mailing;
+namespace ICISAdminPortal.Infrastructure.Mailing;
 public class SmtpMailService : IMailService
 {
     private readonly MailSettings _settings;

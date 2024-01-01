@@ -2,13 +2,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Mukesh.Application.Common.Interfaces;
-using Mukesh.Infrastructure.Auth.AzureAd;
-using Mukesh.Infrastructure.Auth.Jwt;
-using Mukesh.Infrastructure.Auth.Permissions;
-using Mukesh.Infrastructure.Identity;
+using ICISAdminPortal.Application.Common.Interfaces;
+using ICISAdminPortal.Infrastructure.Auth.AzureAd;
+using ICISAdminPortal.Infrastructure.Auth.Jwt;
+using ICISAdminPortal.Infrastructure.Auth.Permissions;
+using ICISAdminPortal.Infrastructure.Identity;
 
-namespace Mukesh.Infrastructure.Auth;
+namespace ICISAdminPortal.Infrastructure.Auth;
 internal static class Startup
 {
     internal static IServiceCollection AddAuth(this IServiceCollection services, IConfiguration config)

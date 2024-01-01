@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Application.Multitenancy;
+﻿namespace ICISAdminPortal.Application.Multitenancy;
 
 public class GetAllTenantsRequest : IRequest<List<TenantDto>>
 {

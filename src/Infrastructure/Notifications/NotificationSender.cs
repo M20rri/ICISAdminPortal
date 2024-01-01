@@ -1,10 +1,10 @@
 ﻿using Finbuckle.MultiTenant;
 using Microsoft.AspNetCore.SignalR;
-using Mukesh.Application.Common.Interfaces;
-using Mukesh.Shared.Notifications;
-using static Mukesh.Shared.Notifications.NotificationConstants;
+using ICISAdminPortal.Application.Common.Interfaces;
+using ICISAdminPortal.Shared.Notifications;
+using static ICISAdminPortal.Shared.Notifications.NotificationConstants;
 
-namespace Mukesh.Infrastructure.Notifications;
+namespace ICISAdminPortal.Infrastructure.Notifications;
 public class NotificationSender : INotificationSender
 {
     private readonly IHubContext<NotificationHub> _notificationHubContext;

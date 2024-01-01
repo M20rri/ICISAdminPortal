@@ -1,4 +1,4 @@
-namespace Mukesh.Infrastructure.Persistence.Initialization;
+namespace ICISAdminPortal.Infrastructure.Persistence.Initialization;
 
 public interface ICustomSeeder
 {

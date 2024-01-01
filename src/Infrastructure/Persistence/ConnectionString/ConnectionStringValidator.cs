@@ -1,13 +1,13 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Mukesh.Application.Common.Persistence;
-using Mukesh.Infrastructure.Common;
+using ICISAdminPortal.Application.Common.Persistence;
+using ICISAdminPortal.Infrastructure.Common;
 using MySqlConnector;
 using Npgsql;
 using System.Data.SqlClient;
 
-namespace Mukesh.Infrastructure.Persistence.ConnectionString;
+namespace ICISAdminPortal.Infrastructure.Persistence.ConnectionString;
 internal class ConnectionStringValidator : IConnectionStringValidator
 {
     private readonly DatabaseSettings _dbSettings;

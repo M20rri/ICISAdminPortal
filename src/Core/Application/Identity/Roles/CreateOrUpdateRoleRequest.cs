@@ -1,4 +1,4 @@
-namespace Mukesh.Application.Identity.Roles;
+namespace ICISAdminPortal.Application.Identity.Roles;
 
 public class CreateOrUpdateRoleRequest
 {

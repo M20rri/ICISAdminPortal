@@ -1,4 +1,4 @@
-﻿namespace Mukesh.Infrastructure.Localization;
+﻿namespace ICISAdminPortal.Infrastructure.Localization;
 
 public class LocalizationSettings
 {
