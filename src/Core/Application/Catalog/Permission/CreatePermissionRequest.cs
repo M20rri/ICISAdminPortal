@@ -8,9 +8,9 @@ public record CreatePermissionRequest(CreatePermissionRequestDto model) : IReque
 public sealed class CreatePermissionHandler : IRequestHandler<CreatePermissionRequest, DefaultIdType>
 {
     private readonly IPermissionRepositoryAsync _repository;
-    private readonly IReadRepository<Page> _repositoryPage;
-    private readonly IRepositoryWithEvents<Domain.Catalog.ActionPage> _repositoryAction;
-    public CreatePermissionHandler(IPermissionRepositoryAsync repository, IReadRepository<Page> repositoryPage, IRepositoryWithEvents<Domain.Catalog.ActionPage> repositoryAction)
+    private readonly IPageRepositoryAsync _repositoryPage;
+    private readonly IActionRepositoryAsync _repositoryAction;
+    public CreatePermissionHandler(IPermissionRepositoryAsync repository, IPageRepositoryAsync repositoryPage, IActionRepositoryAsync repositoryAction)
     {
         _repository = repository;
         _repositoryPage = repositoryPage;
@@ -34,7 +34,7 @@ public sealed class CreatePermissionHandler : IRequestHandler<CreatePermissionRe
             var action = await _repositoryAction.GetByIdAsync(entity.actionId) ??
                 throw new Exceptions.ValidationException("Module Not Exist", (int)HttpStatusCode.BadRequest);
 
-            var page = await _repositoryPage.FindByIdAsync(a => a.Id == entity.pageId, new[] { "Module" }) ??
+            var page = await _repositoryPage.FindWithIncludesAsync(a => a.Id == entity.pageId, new[] { "Module" }) ??
                 throw new Exceptions.ValidationException("Page Not Exist", (int)HttpStatusCode.BadRequest);
 
             int codeModule = page.Module.Code;
