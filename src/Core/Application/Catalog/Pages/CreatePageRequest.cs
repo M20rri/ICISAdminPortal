@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using ICISAdminPortal.Application.Common.Persistence.UserDefined;
+using System.Net;
 using System.Text.RegularExpressions;
 
 namespace ICISAdminPortal.Application.Catalog.Pages;
@@ -7,8 +8,8 @@ public record CreatePageRequest(CreatePageRequestDto model) : IRequest<DefaultId
 
 public sealed class CreatePageHandler : IRequestHandler<CreatePageRequest, DefaultIdType>
 {
-    private readonly IRepositoryWithEvents<Page> _repository;
-    public CreatePageHandler(IRepositoryWithEvents<Page> repository)
+    private readonly IPageRepositoryAsync _repository;
+    public CreatePageHandler(IPageRepositoryAsync repository)
     {
         _repository = repository;
     }
@@ -17,7 +18,7 @@ public sealed class CreatePageHandler : IRequestHandler<CreatePageRequest, Defau
     {
         var entity = request.model;
 
-        CreatePageRequestValidator validationRules = new CreatePageRequestValidator();
+        CreatePageRequestValidator validationRules = new CreatePageRequestValidator(_repository);
         var result = await validationRules.ValidateAsync(entity);
         if (result.Errors.Any())
         {

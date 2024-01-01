@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using ICISAdminPortal.Application.Common.Exceptions;
 using ICISAdminPortal.Application.Common.Interfaces;
+using System.Net;
 
 namespace ICISAdminPortal.Infrastructure.Notifications;
 [Authorize]
@@ -22,7 +23,7 @@ public class NotificationHub : Hub, ITransientService
     {
         if (_currentTenant is null)
         {
-            throw new UnauthorizedException("Authentication Failed.");
+            throw new UnauthorizedException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
         }
 
         await Groups.AddToGroupAsync(Context.ConnectionId, $"GroupTenant-{_currentTenant.Id}");

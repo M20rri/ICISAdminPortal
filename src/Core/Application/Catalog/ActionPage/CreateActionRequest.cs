@@ -1,13 +1,14 @@
-﻿using System.Net;
+﻿using ICISAdminPortal.Application.Common.Persistence.UserDefined;
+using System.Net;
 
 namespace ICISAdminPortal.Application.Catalog.ActionPage;
 public record CreateActionRequest(CreateActionRequestDto model) : IRequest<DefaultIdType>;
 
 public sealed class CreateActionHandler : IRequestHandler<CreateActionRequest, DefaultIdType>
 {
-    private readonly IRepositoryWithEvents<Domain.Catalog.ActionPage> _repository;
+    private readonly IActionRepositoryAsync _repository;
 
-    public CreateActionHandler(IRepositoryWithEvents<Domain.Catalog.ActionPage> repository)
+    public CreateActionHandler(IActionRepositoryAsync repository)
     {
         _repository = repository;
     }
@@ -15,7 +16,7 @@ public sealed class CreateActionHandler : IRequestHandler<CreateActionRequest, D
     {
         var entity = request.model;
 
-        CreateActionRequestValidator validationRules = new CreateActionRequestValidator();
+        CreateActionRequestValidator validationRules = new CreateActionRequestValidator(_repository);
         var result = await validationRules.ValidateAsync(entity);
         if (result.Errors.Any())
         {

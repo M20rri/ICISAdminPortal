@@ -2,6 +2,7 @@
 using ICISAdminPortal.Application.Common.Caching;
 using ICISAdminPortal.Application.Common.Exceptions;
 using ICISAdminPortal.Shared.Authorization;
+using System.Net;
 
 namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService
@@ -10,7 +11,7 @@ internal partial class UserService
     {
         var user = await _userManager.FindByIdAsync(userId);
 
-        _ = user ?? throw new UnauthorizedException("Authentication Failed.");
+        _ = user ?? throw new UnauthorizedException("Authentication Failed.", (int)HttpStatusCode.Unauthorized);
 
         var userRoles = await _userManager.GetRolesAsync(user);
         var permissions = new List<string>();

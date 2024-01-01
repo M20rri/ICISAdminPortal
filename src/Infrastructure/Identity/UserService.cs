@@ -19,6 +19,7 @@ using ICISAdminPortal.Domain.Identity;
 using ICISAdminPortal.Infrastructure.Auth;
 using ICISAdminPortal.Infrastructure.Persistence.Context;
 using ICISAdminPortal.Shared.Authorization;
+using System.Net;
 
 namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService : IUserService
@@ -106,7 +107,7 @@ internal partial class UserService : IUserService
     {
         if (string.IsNullOrWhiteSpace(_currentTenant?.Id))
         {
-            throw new UnauthorizedException(_t["Invalid Tenant."]);
+            throw new UnauthorizedException(_t["Invalid Tenant."], (int)HttpStatusCode.Unauthorized);
         }
     }
 

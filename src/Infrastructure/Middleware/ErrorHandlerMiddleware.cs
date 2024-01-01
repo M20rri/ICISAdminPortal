@@ -1,9 +1,10 @@
 ﻿using ICISAdminPortal.Application.Exceptions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Net;
 
-namespace ICISAdminPortal.Host.Middlewares;
-
+namespace ICISAdminPortal.Infrastructure.Middleware;
 public class ErrorHandlerMiddleware
 {
     private readonly RequestDelegate _next;

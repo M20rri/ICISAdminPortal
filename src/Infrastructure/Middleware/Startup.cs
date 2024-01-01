@@ -6,10 +6,10 @@ namespace ICISAdminPortal.Infrastructure.Middleware;
 internal static class Startup
 {
     internal static IServiceCollection AddExceptionMiddleware(this IServiceCollection services) =>
-        services.AddScoped<ExceptionMiddleware>();
+        services.AddScoped<ErrorHandlerMiddleware>();
 
     internal static IApplicationBuilder UseExceptionMiddleware(this IApplicationBuilder app) =>
-        app.UseMiddleware<ExceptionMiddleware>();
+        app.UseMiddleware<ErrorHandlerMiddleware>();
 
     internal static IServiceCollection AddRequestLogging(this IServiceCollection services, IConfiguration config)
     {

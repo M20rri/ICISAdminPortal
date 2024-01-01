@@ -4,6 +4,10 @@ using Microsoft.IdentityModel.Tokens;
 using ICISAdminPortal.Application.Common.Exceptions;
 using System.Security.Claims;
 using System.Text;
+using Newtonsoft.Json;
+using System.Net;
+using System;
+using ICISAdminPortal.Application.Exceptions;
 
 namespace ICISAdminPortal.Infrastructure.Auth.Jwt;
 public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions>
@@ -46,9 +50,10 @@ public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions
             OnChallenge = context =>
             {
                 context.HandleResponse();
+                var result = string.Empty;
                 if (!context.Response.HasStarted)
                 {
-                    throw new UnauthorizedException("Authentication Failed.");
+                    throw new ValidationException("Authentication Failed", (int)HttpStatusCode.Unauthorized);
                 }
 
                 return Task.CompletedTask;
