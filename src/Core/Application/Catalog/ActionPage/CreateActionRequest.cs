@@ -13,6 +13,15 @@ public sealed class CreateActionHandler : IRequestHandler<CreateActionRequest, D
     {
         var entity = request.model;
 
+        CreateActionRequestValidator validationRules = new CreateActionRequestValidator();
+        var result = await validationRules.ValidateAsync(entity);
+        if (result.Errors.Any())
+        {
+            var errors = result.Errors;
+            throw new ValidationException(errors);
+        }
+
+
         var actionPage = new Domain.Catalog.ActionPage
         {
             NameAr = entity.NameAr,

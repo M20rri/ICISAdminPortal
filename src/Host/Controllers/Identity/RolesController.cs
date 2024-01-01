@@ -61,10 +61,10 @@ public class RolesController : VersionNeutralApiController
         return _roleService.DeleteAsync(id);
     }
 
-    [HttpPost, Route("CreateRoleClaimAsync")]
-    //[MustHavePermission(FSHAction.Create, FSHResource.Roles)]
+    [HttpPost]
+    [Route("CreateRoleClaimAsync")]
     [OpenApiOperation("Create claims for role.", "")]
-    public Task<DefaultIdType> CreateRoleClaimAsync(CreatePermissionClaimRequestDto request, CancellationToken cancellationToken)
+    public Task<int> CreateRoleClaimAsync(CreatePermissionClaimRequestDto request, CancellationToken cancellationToken)
     {
         return _roleService.CreateClaimsAsync(request, cancellationToken);
     }

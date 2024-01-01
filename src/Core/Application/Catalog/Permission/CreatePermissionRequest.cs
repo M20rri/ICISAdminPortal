@@ -1,5 +1,4 @@
 ﻿namespace Mukesh.Application.Catalog.Permission;
-using System.Linq;
 
 public record CreatePermissionRequest(CreatePermissionRequestDto model) : IRequest<DefaultIdType>;
 
@@ -20,6 +19,14 @@ public sealed class CreatePermissionHandler : IRequestHandler<CreatePermissionRe
         var entity = request.model;
         try
         {
+            CreatePermissionRequestValidator validationRules = new CreatePermissionRequestValidator();
+            var result = await validationRules.ValidateAsync(entity);
+            if (result.Errors.Any())
+            {
+                var errors = result.Errors;
+                throw new ValidationException(errors);
+            }
+
 
             var action = await _repositoryAction.GetByIdAsync(entity.actionId);
 

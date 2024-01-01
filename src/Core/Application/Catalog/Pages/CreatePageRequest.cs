@@ -1,5 +1,4 @@
-﻿using Mukesh.Application.Catalog.Module;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace Mukesh.Application.Catalog.Pages;
 
@@ -16,6 +15,14 @@ public sealed class CreatePageHandler : IRequestHandler<CreatePageRequest, Defau
     public async Task<DefaultIdType> Handle(CreatePageRequest request, CancellationToken cancellationToken)
     {
         var entity = request.model;
+
+        CreatePageRequestValidator validationRules = new CreatePageRequestValidator();
+        var result = await validationRules.ValidateAsync(entity);
+        if (result.Errors.Any())
+        {
+            var errors = result.Errors;
+            throw new ValidationException(errors);
+        }
 
         var module = new Page
         {

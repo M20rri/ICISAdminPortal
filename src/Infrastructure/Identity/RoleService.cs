@@ -8,12 +8,10 @@ using Mukesh.Application.Common.Events;
 using Mukesh.Application.Common.Exceptions;
 using Mukesh.Application.Common.Interfaces;
 using Mukesh.Application.Identity.Roles;
-using Mukesh.Domain.Catalog;
 using Mukesh.Domain.Identity;
 using Mukesh.Infrastructure.Persistence.Context;
 using Mukesh.Shared.Authorization;
 using Mukesh.Shared.Multitenancy;
-using System.Security.Claims;
 
 namespace Mukesh.Infrastructure.Identity;
 internal class RoleService : IRoleService
@@ -189,7 +187,7 @@ internal class RoleService : IRoleService
         return string.Format(_t["Role {0} Deleted."], role.Name);
     }
 
-    public async Task<DefaultIdType> CreateClaimsAsync(CreatePermissionClaimRequestDto request, CancellationToken cancellationToken)
+    public async Task<int> CreateClaimsAsync(CreatePermissionClaimRequestDto request, CancellationToken cancellationToken)
     {
         var role = await _roleManager.FindByIdAsync(request.roleId);
         ApplicationRoleClaim claim = default!;
@@ -199,7 +197,7 @@ internal class RoleService : IRoleService
             {
                 RoleId = role.Id,
                 ClaimType = FSHClaims.Permission,
-                ClaimValue = request.permissionId,
+                ClaimValue = request.permissionCode,
                 CreatedBy = _currentUser.GetUserId().ToString(),
                 CreatedOn = DateTime.UtcNow
             };
@@ -209,6 +207,6 @@ internal class RoleService : IRoleService
 
         }
 
-        return Guid.Parse(claim.ClaimValue);
+        return claim.Id;
     }
 }

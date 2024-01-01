@@ -8,9 +8,18 @@ public sealed class CreateModuleHandler : IRequestHandler<CreateModuleRequest, D
     {
         _repository = repository;
     }
+
     public async Task<DefaultIdType> Handle(CreateModuleRequest request, CancellationToken cancellationToken)
     {
         var entity = request.model;
+
+        CreateModuleRequestValidator validationRules = new CreateModuleRequestValidator();
+        var result = await validationRules.ValidateAsync(entity);
+        if (result.Errors.Any())
+        {
+            var errors = result.Errors;
+            throw new ValidationException(errors);
+        }
 
         var module = new Domain.Catalog.Module
         {

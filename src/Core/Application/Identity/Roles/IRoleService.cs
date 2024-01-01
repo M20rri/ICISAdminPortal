@@ -20,5 +20,5 @@ public interface IRoleService : ITransientService
 
     Task<string> DeleteAsync(string id);
 
-    Task<DefaultIdType> CreateClaimsAsync(CreatePermissionClaimRequestDto request, CancellationToken cancellationToken);
+    Task<int> CreateClaimsAsync(CreatePermissionClaimRequestDto request, CancellationToken cancellationToken);
 }
