@@ -14,6 +14,7 @@ public sealed class CreateModuleHandler : IRequestHandler<CreateModuleRequest, D
 
         var module = new Domain.Catalog.Module
         {
+            Code = entity.Code,
             NameAr = entity.NameAr,
             NameEn = entity.NameEn,
             IsActive = true

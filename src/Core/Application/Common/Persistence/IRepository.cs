@@ -1,4 +1,6 @@
-﻿namespace Mukesh.Application.Common.Persistence;
+﻿using System.Linq.Expressions;
+
+namespace Mukesh.Application.Common.Persistence;
 
 // The Repository for the Application Db
 // I(Read)RepositoryBase<T> is from Ardalis.Specification
@@ -17,6 +19,7 @@ public interface IRepository<T> : IRepositoryBase<T>
 public interface IReadRepository<T> : IReadRepositoryBase<T>
     where T : class, IAggregateRoot
 {
+    Task<T> FindByIdAsync(Expression<Func<T, bool>> criteria, string[] includes = null);
 }
 
 /// <summary>

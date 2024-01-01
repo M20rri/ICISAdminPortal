@@ -4,8 +4,7 @@ namespace Mukesh.Host.Controllers.Catalog;
 public class ModuleController : VersionedApiController
 {
     [HttpPost]
-    [MustHavePermission(FSHAction.Create, FSHResource.Brands)]
-    [OpenApiOperation("Create a new brand.", "")]
+    [Authorize]
     public Task<Guid> CreateAsync(CreateModuleRequest request)
     {
         return Mediator.Send(request);

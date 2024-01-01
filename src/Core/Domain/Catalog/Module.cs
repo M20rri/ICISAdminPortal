@@ -1,5 +1,6 @@
 ﻿namespace Mukesh.Domain.Catalog;
 public class Module : BaseTypeEntity, IAggregateRoot
 {
-    public virtual ICollection<Page> Pages { get; set; }
+    public int Code { get; set; }
+    public ICollection<Page> Pages { get; set; }
 }

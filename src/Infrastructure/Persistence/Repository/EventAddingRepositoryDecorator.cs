@@ -1,16 +1,11 @@
 ﻿using Ardalis.Specification;
+using Microsoft.EntityFrameworkCore;
 using Mukesh.Application.Common.Persistence;
 using Mukesh.Domain.Common.Contracts;
 using Mukesh.Domain.Common.Events;
+using System.Linq.Expressions;
 
 namespace Mukesh.Infrastructure.Persistence.Repository;
-/// <summary>
-/// The repository that implements IRepositoryWithEvents.
-/// Implemented as a decorator. It only augments the Add,
-/// Update and Delete calls where it adds the respective
-/// EntityCreated, EntityUpdated or EntityDeleted event
-/// before delegating to the decorated repository.
-/// </summary>
 public class EventAddingRepositoryDecorator<T> : IRepositoryWithEvents<T>
     where T : class, IAggregateRoot
 {
@@ -46,6 +41,20 @@ public class EventAddingRepositoryDecorator<T> : IRepositoryWithEvents<T>
         return _decorated.DeleteRangeAsync(entities, cancellationToken);
     }
 
+    public async Task<T> FindLastInsertedRowAsync()
+    {
+        try
+        {
+            var list = await _decorated.ListAsync();
+            return list.OrderByDescending(entity => EF.Property<DateTime>(entity, "CreatedOn")).FirstOrDefault();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
     // The rest of the methods are simply forwarded.
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
         _decorated.SaveChangesAsync(cancellationToken);
@@ -61,8 +70,10 @@ public class EventAddingRepositoryDecorator<T> : IRepositoryWithEvents<T>
         _decorated.ListAsync(cancellationToken);
     public Task<List<T>> ListAsync(ISpecification<T> specification, CancellationToken cancellationToken = default) =>
         _decorated.ListAsync(specification, cancellationToken);
+
     public Task<List<TResult>> ListAsync<TResult>(ISpecification<T, TResult> specification, CancellationToken cancellationToken = default) =>
         _decorated.ListAsync(specification, cancellationToken);
+
     public Task<bool> AnyAsync(ISpecification<T> specification, CancellationToken cancellationToken = default) =>
         _decorated.AnyAsync(specification, cancellationToken);
     public Task<bool> AnyAsync(CancellationToken cancellationToken = default) =>
@@ -92,4 +103,5 @@ public class EventAddingRepositoryDecorator<T> : IRepositoryWithEvents<T>
 
     public Task<TResult?> SingleOrDefaultAsync<TResult>(ISingleResultSpecification<T, TResult> specification, CancellationToken cancellationToken = default) =>
         _decorated.SingleOrDefaultAsync<TResult>(specification, cancellationToken);
+
 }
