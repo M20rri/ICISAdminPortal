@@ -13,6 +13,8 @@ using ICISAdminPortal.Infrastructure.Persistence.Context;
 using ICISAdminPortal.Shared.Authorization;
 using ICISAdminPortal.Shared.Multitenancy;
 using FluentValidation;
+using System.Net;
+using System;
 
 namespace ICISAdminPortal.Infrastructure.Identity;
 internal class RoleService : IRoleService
@@ -194,8 +196,8 @@ internal class RoleService : IRoleService
         var result = await validationRules.ValidateAsync(request);
         if (result.Errors.Any())
         {
-            var errors = result.Errors;
-            throw new ValidationException(errors);
+            var errors = result.Errors.Select(x => x.ErrorMessage).ToList();
+            throw new Application.Exceptions.ValidationException(errors, (int)HttpStatusCode.BadRequest);
         }
 
         var role = await _roleManager.FindByIdAsync(request.roleId);

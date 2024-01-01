@@ -1,5 +1,6 @@
 using ICISAdminPortal.Application.Catalog.Permission;
 using ICISAdminPortal.Application.Identity.Roles;
+using System.Net;
 
 namespace ICISAdminPortal.Host.Controllers.Identity;
 public class RolesController : VersionNeutralApiController
@@ -64,8 +65,9 @@ public class RolesController : VersionNeutralApiController
     [HttpPost]
     [Route("CreateRoleClaimAsync")]
     [OpenApiOperation("Create claims for role.", "")]
-    public Task<int> CreateRoleClaimAsync(CreatePermissionClaimRequestDto request, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateRoleClaimAsync(CreatePermissionClaimRequestDto request, CancellationToken cancellationToken)
     {
-        return _roleService.CreateClaimsAsync(request, cancellationToken);
+        int response = await _roleService.CreateClaimsAsync(request, cancellationToken);
+        return CustomResult("Saved Sucesfully", response, HttpStatusCode.OK);
     }
 }

@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using ICISAdminPortal.Application.Catalog.ActionPage;
-using ICISAdminPortal.Application.Catalog.Module;
+﻿using ICISAdminPortal.Application.Catalog.ActionPage;
+using System.Net;
 
 namespace ICISAdminPortal.Host.Controllers.Catalog;
 public class ActionPagesController : VersionedApiController
 {
-    public Task<Guid> CreateAsync(CreateActionRequest request)
+    public async Task<IActionResult> CreateAsync(CreateActionRequest request)
     {
-        return Mediator.Send(request);
+        var response = await Mediator.Send(request);
+        return CustomResult("Saved Sucesfully", response, HttpStatusCode.OK);
     }
 }

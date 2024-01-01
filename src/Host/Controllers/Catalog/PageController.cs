@@ -1,10 +1,12 @@
 ﻿using ICISAdminPortal.Application.Catalog.Pages;
+using System.Net;
 
 namespace ICISAdminPortal.Host.Controllers.Catalog;
 public class PageController : VersionNeutralApiController
 {
-    public Task<Guid> CreateAsync(CreatePageRequest request)
+    public async Task<IActionResult> CreateAsync(CreatePageRequest request)
     {
-        return Mediator.Send(request);
+        var response = await Mediator.Send(request);
+        return CustomResult("Saved Sucesfully", response, HttpStatusCode.OK);
     }
 }

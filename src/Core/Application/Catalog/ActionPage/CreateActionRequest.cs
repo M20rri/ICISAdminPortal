@@ -1,4 +1,6 @@
-﻿namespace ICISAdminPortal.Application.Catalog.ActionPage;
+﻿using System.Net;
+
+namespace ICISAdminPortal.Application.Catalog.ActionPage;
 public record CreateActionRequest(CreateActionRequestDto model) : IRequest<DefaultIdType>;
 
 public sealed class CreateActionHandler : IRequestHandler<CreateActionRequest, DefaultIdType>
@@ -17,10 +19,9 @@ public sealed class CreateActionHandler : IRequestHandler<CreateActionRequest, D
         var result = await validationRules.ValidateAsync(entity);
         if (result.Errors.Any())
         {
-            var errors = result.Errors;
-            throw new ValidationException(errors);
+            var errors = result.Errors.Select(x => x.ErrorMessage).ToList();
+            throw new Exceptions.ValidationException(errors, (int)HttpStatusCode.BadRequest);
         }
-
 
         var actionPage = new Domain.Catalog.ActionPage
         {

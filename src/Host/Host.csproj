@@ -10,6 +10,7 @@
         <PublishProfile>DefaultContainer</PublishProfile>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="CoreApiResponse" Version="1.0.1" />
         <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
         <PackageReference Include="Hangfire.Console.Extensions.Serilog" Version="1.0.2" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">

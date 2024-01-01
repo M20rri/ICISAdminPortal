@@ -1,8 +1,9 @@
+using CoreApiResponse;
 using MediatR;
 
 namespace ICISAdminPortal.Host.Controllers;
 [ApiController]
-public class BaseApiController : ControllerBase
+public class BaseApiController : BaseController
 {
     private ISender _mediator = null!;
 

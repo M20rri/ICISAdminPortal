@@ -1,11 +1,11 @@
 using ICISAdminPortal.Application;
 using ICISAdminPortal.Host.Configurations;
 using ICISAdminPortal.Host.Controllers;
+using ICISAdminPortal.Host.Middlewares;
 using ICISAdminPortal.Infrastructure;
 using ICISAdminPortal.Infrastructure.Common;
 using ICISAdminPortal.Infrastructure.Logging.Serilog;
 using Serilog;
-using Serilog.Formatting.Compact;
 
 [assembly: ApiConventionType(typeof(FSHApiConventions))]
 
@@ -25,6 +25,7 @@ try
     await app.Services.InitializeDatabasesAsync();
 
     app.UseInfrastructure(builder.Configuration);
+    app.UseMiddleware<ErrorHandlerMiddleware>();
     app.MapEndpoints();
     app.Run();
 }

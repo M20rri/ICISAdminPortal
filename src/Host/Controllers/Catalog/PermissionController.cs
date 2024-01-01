@@ -1,10 +1,12 @@
 ﻿using ICISAdminPortal.Application.Catalog.Permission;
+using System.Net;
 
 namespace ICISAdminPortal.Host.Controllers.Catalog;
 public class PermissionController : VersionedApiController
 {
-    public Task<Guid> CreateAsync(CreatePermissionRequest request)
+    public async Task<IActionResult> CreateAsync(CreatePermissionRequest request)
     {
-        return Mediator.Send(request);
+        var response = await Mediator.Send(request);
+        return CustomResult("Saved Sucesfully", response, HttpStatusCode.OK);
     }
 }

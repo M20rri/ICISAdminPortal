@@ -1,4 +1,6 @@
-﻿namespace ICISAdminPortal.Application.Catalog.Permission;
+﻿using System.Net;
+
+namespace ICISAdminPortal.Application.Catalog.Permission;
 
 public record CreatePermissionRequest(CreatePermissionRequestDto model) : IRequest<DefaultIdType>;
 
@@ -23,8 +25,8 @@ public sealed class CreatePermissionHandler : IRequestHandler<CreatePermissionRe
             var result = await validationRules.ValidateAsync(entity);
             if (result.Errors.Any())
             {
-                var errors = result.Errors;
-                throw new ValidationException(errors);
+                var errors = result.Errors.Select(x => x.ErrorMessage).ToList();
+                throw new Exceptions.ValidationException(errors, (int)HttpStatusCode.BadRequest);
             }
 
 
