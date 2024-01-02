@@ -11,7 +11,7 @@ using ICISAdminPortal.Infrastructure.Identity;
 using System.Data;
 
 namespace ICISAdminPortal.Infrastructure.Persistence.Context;
-public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUser, ApplicationRole, string, IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, ApplicationRoleClaim, IdentityUserToken<string>>
+public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUser, ApplicationRole, string, IdentityUserClaim<string>, ApplicationUserRole, IdentityUserLogin<string>, ApplicationRoleClaim, IdentityUserToken<string>>
 {
     protected readonly ICurrentUser _currentUser;
     private readonly ISerializerService _serializer;

@@ -8,6 +8,7 @@ using ICISAdminPortal.Domain.Common;
 using ICISAdminPortal.Domain.Identity;
 using ICISAdminPortal.Shared.Authorization;
 using System.Security.Claims;
+using System.Net;
 
 namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService
@@ -15,7 +16,7 @@ internal partial class UserService
     /// <summary>
     /// This is used when authenticating with AzureAd.
     /// The local user is retrieved using the objectidentifier claim present in the ClaimsPrincipal.
-    /// If no such claim is found, an InternalServerException is thrown.
+    /// If no such claim is found, an Application.Exceptions.ValidationException is thrown.
     /// If no user is found with that ObjectId, a new one is created and populated with the values from the ClaimsPrincipal.
     /// If a role claim is present in the principal, and the user is not yet in that roll, then the user is added to that role.
     /// </summary>
@@ -24,7 +25,7 @@ internal partial class UserService
         string? objectId = principal.GetObjectId();
         if (string.IsNullOrWhiteSpace(objectId))
         {
-            throw new InternalServerException(_t["Invalid objectId"]);
+            throw new Application.Exceptions.ValidationException(_t["Invalid objectId"], (int)HttpStatusCode.BadRequest);
         }
 
         var user = await _userManager.Users.Where(u => u.ObjectId == objectId).FirstOrDefaultAsync()
@@ -46,13 +47,13 @@ internal partial class UserService
         string? username = principal.GetDisplayName();
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(username))
         {
-            throw new InternalServerException(string.Format(_t["Username or Email not valid."]));
+            throw new Application.Exceptions.ValidationException(string.Format(_t["Username or Email not valid."]), (int)HttpStatusCode.BadRequest);
         }
 
         var user = await _userManager.FindByNameAsync(username);
         if (user is not null && !string.IsNullOrWhiteSpace(user.ObjectId))
         {
-            throw new InternalServerException(string.Format(_t["Username {0} is already taken."], username));
+            throw new Application.Exceptions.ValidationException(string.Format(_t["Username {0} is already taken."], username), (int)HttpStatusCode.BadRequest);
         }
 
         if (user is null)
@@ -60,7 +61,7 @@ internal partial class UserService
             user = await _userManager.FindByEmailAsync(email);
             if (user is not null && !string.IsNullOrWhiteSpace(user.ObjectId))
             {
-                throw new InternalServerException(string.Format(_t["Email {0} is already taken."], email));
+                throw new Application.Exceptions.ValidationException(string.Format(_t["Email {0} is already taken."], email), (int)HttpStatusCode.BadRequest);
             }
         }
 
@@ -94,7 +95,7 @@ internal partial class UserService
 
         if (!result.Succeeded)
         {
-            throw new InternalServerException(_t["Validation Errors Occurred."], result.GetErrors(_t));
+            throw new Application.Exceptions.ValidationException(result.GetErrors(_t), (int)HttpStatusCode.BadRequest);
         }
 
         return user;
@@ -115,7 +116,7 @@ internal partial class UserService
         var result = await _userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded)
         {
-            throw new InternalServerException(_t["Validation Errors Occurred."], result.GetErrors(_t));
+            throw new Application.Exceptions.ValidationException(result.GetErrors(_t), (int)HttpStatusCode.BadRequest);
         }
 
         await _userManager.AddToRoleAsync(user, FSHRoles.Basic);
@@ -149,7 +150,7 @@ internal partial class UserService
     {
         var user = await _userManager.FindByIdAsync(userId);
 
-        _ = user ?? throw new NotFoundException(_t["User Not Found."]);
+        _ = user ?? throw new Application.Exceptions.ValidationException(_t["User Not Found."], (int)HttpStatusCode.BadRequest);
 
         string currentImage = user.ImageUrl ?? string.Empty;
         if (request.Image != null || request.DeleteCurrentImage)
@@ -179,7 +180,7 @@ internal partial class UserService
 
         if (!result.Succeeded)
         {
-            throw new InternalServerException(_t["Update profile failed"], result.GetErrors(_t));
+            throw new Application.Exceptions.ValidationException(result.GetErrors(_t), (int)HttpStatusCode.BadRequest);
         }
     }
 }

@@ -4,6 +4,7 @@ using ICISAdminPortal.Application.Common.Exceptions;
 using ICISAdminPortal.Infrastructure.Common;
 using ICISAdminPortal.Shared.Multitenancy;
 using System.Text;
+using System.Net;
 
 namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService
@@ -30,14 +31,14 @@ internal partial class UserService
             .Where(u => u.Id == userId && !u.EmailConfirmed)
             .FirstOrDefaultAsync(cancellationToken);
 
-        _ = user ?? throw new InternalServerException(_t["An error occurred while confirming E-Mail."]);
+        _ = user ?? throw new Application.Exceptions.ValidationException(_t["An error occurred while confirming E-Mail."], (int)HttpStatusCode.BadRequest);
 
         code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
         var result = await _userManager.ConfirmEmailAsync(user, code);
 
         return result.Succeeded
             ? string.Format(_t["Account Confirmed for E-Mail {0}. You can now use the /api/tokens endpoint to generate JWT."], user.Email)
-            : throw new InternalServerException(string.Format(_t["An error occurred while confirming {0}"], user.Email));
+            : throw new Application.Exceptions.ValidationException(string.Format(_t["An error occurred while confirming {0}"], user.Email), (int)HttpStatusCode.BadRequest);
     }
 
     public async Task<string> ConfirmPhoneNumberAsync(string userId, string code)
@@ -46,8 +47,8 @@ internal partial class UserService
 
         var user = await _userManager.FindByIdAsync(userId);
 
-        _ = user ?? throw new InternalServerException(_t["An error occurred while confirming Mobile Phone."]);
-        if (string.IsNullOrEmpty(user.PhoneNumber)) throw new InternalServerException(_t["An error occurred while confirming Mobile Phone."]);
+        _ = user ?? throw new Application.Exceptions.ValidationException(_t["An error occurred while confirming Mobile Phone."], (int)HttpStatusCode.BadRequest);
+        if (string.IsNullOrEmpty(user.PhoneNumber)) throw new Application.Exceptions.ValidationException(_t["An error occurred while confirming Mobile Phone."], (int)HttpStatusCode.BadRequest);
 
         var result = await _userManager.ChangePhoneNumberAsync(user, user.PhoneNumber, code);
 
@@ -55,6 +56,6 @@ internal partial class UserService
             ? user.PhoneNumberConfirmed
                 ? string.Format(_t["Account Confirmed for Phone Number {0}. You can now use the /api/tokens endpoint to generate JWT."], user.PhoneNumber)
                 : string.Format(_t["Account Confirmed for Phone Number {0}. You should confirm your E-mail before using the /api/tokens endpoint to generate JWT."], user.PhoneNumber)
-            : throw new InternalServerException(string.Format(_t["An error occurred while confirming {0}"], user.PhoneNumber));
+            : throw new Application.Exceptions.ValidationException(string.Format(_t["An error occurred while confirming {0}"], user.PhoneNumber), (int)HttpStatusCode.BadRequest);
     }
 }

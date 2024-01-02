@@ -1,16 +1,12 @@
-using System.Net;
-
 namespace ICISAdminPortal.Application.Common.Exceptions;
 public class CustomException : Exception
 {
-    public List<string>? ErrorMessages { get; }
+    public int ErrorCode { get; init; }
+    public object Data { get; init; }
 
-    public HttpStatusCode StatusCode { get; }
-
-    public CustomException(string message, List<string>? errors = default, HttpStatusCode statusCode = HttpStatusCode.InternalServerError)
-        : base(message)
+    public CustomException(object data, int errorCode)
     {
-        ErrorMessages = errors;
-        StatusCode = statusCode;
+        Data = data;
+        ErrorCode = errorCode;
     }
 }

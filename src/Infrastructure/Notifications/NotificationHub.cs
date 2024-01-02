@@ -23,7 +23,11 @@ public class NotificationHub : Hub, ITransientService
     {
         if (_currentTenant is null)
         {
+<<<<<<< HEAD
             throw new UnauthorizedException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
+=======
+            throw new Application.Exceptions.ValidationException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
+>>>>>>> Fix/Migrations
         }
 
         await Groups.AddToGroupAsync(Context.ConnectionId, $"GroupTenant-{_currentTenant.Id}");

@@ -1,4 +1,6 @@
-﻿using System.Linq.Expressions;
+﻿using ICISAdminPortal.Application.Exceptions;
+using System.Linq.Expressions;
+using System.Net;
 using System.Reflection;
 using System.Text.Json;
 
@@ -126,7 +128,7 @@ public static class SpecificationBuilderExtensions
 
             if (!string.IsNullOrEmpty(filter.Logic))
             {
-                if (filter.Filters is null) throw new CustomException("The Filters attribute is required when declaring a logic");
+                if (filter.Filters is null) throw new Application.Exceptions.ValidationException("The Filters attribute is required when declaring a logic", (int)HttpStatusCode.BadRequest);
                 binaryExpresioFilter = CreateFilterExpression(filter.Logic, filter.Filters, parameter);
             }
             else
@@ -155,7 +157,7 @@ public static class SpecificationBuilderExtensions
 
             if (!string.IsNullOrEmpty(filter.Logic))
             {
-                if (filter.Filters is null) throw new CustomException("The Filters attribute is required when declaring a logic");
+                if (filter.Filters is null) throw new Application.Exceptions.ValidationException("The Filters attribute is required when declaring a logic" , (int)HttpStatusCode.BadRequest);
                 bExpresionFilter = CreateFilterExpression(filter.Logic, filter.Filters, parameter);
             }
             else
@@ -203,7 +205,7 @@ public static class SpecificationBuilderExtensions
             FilterOperator.CONTAINS => Expression.Call(memberExpression, "Contains", null, constantExpression),
             FilterOperator.STARTSWITH => Expression.Call(memberExpression, "StartsWith", null, constantExpression),
             FilterOperator.ENDSWITH => Expression.Call(memberExpression, "EndsWith", null, constantExpression),
-            _ => throw new CustomException("Filter Operator is not valid."),
+            _ => throw new Application.Exceptions.ValidationException("Filter Operator is not valid.", (int)HttpStatusCode.BadRequest),
         };
     }
 
@@ -245,7 +247,7 @@ public static class SpecificationBuilderExtensions
         {
             string? stringEnum = GetStringFromJsonElement(value);
 
-            if (!Enum.TryParse(propertyType, stringEnum, true, out object? valueparsed)) throw new CustomException(string.Format("Value {0} is not valid for {1}", value, field));
+            if (!Enum.TryParse(propertyType, stringEnum, true, out object? valueparsed)) throw new Application.Exceptions.ValidationException(string.Format("Value {0} is not valid for {1}", value, field), (int)HttpStatusCode.BadRequest);
 
             return Expression.Constant(valueparsed, propertyType);
         }
@@ -254,7 +256,7 @@ public static class SpecificationBuilderExtensions
         {
             string? stringGuid = GetStringFromJsonElement(value);
 
-            if (!Guid.TryParse(stringGuid, out Guid valueparsed)) throw new CustomException(string.Format("Value {0} is not valid for {1}", value, field));
+            if (!Guid.TryParse(stringGuid, out Guid valueparsed)) throw new Application.Exceptions.ValidationException(string.Format("Value {0} is not valid for {1}", value, field), (int)HttpStatusCode.BadRequest);
 
             return Expression.Constant(valueparsed, propertyType);
         }
@@ -294,8 +296,8 @@ public static class SpecificationBuilderExtensions
 
     private static Filter GetValidFilter(Filter filter)
     {
-        if (string.IsNullOrEmpty(filter.Field)) throw new CustomException("The field attribute is required when declaring a filter");
-        if (string.IsNullOrEmpty(filter.Operator)) throw new CustomException("The Operator attribute is required when declaring a filter");
+        if (string.IsNullOrEmpty(filter.Field)) throw new Application.Exceptions.ValidationException("The field attribute is required when declaring a filter",(int)HttpStatusCode.BadRequest);
+        if (string.IsNullOrEmpty(filter.Operator)) throw new Application.Exceptions.ValidationException("The Operator attribute is required when declaring a filter",(int)HttpStatusCode.BadRequest);
         return filter;
     }
 

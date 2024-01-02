@@ -36,9 +36,9 @@ public class ApplicationRoleClaimConfig : IEntityTypeConfiguration<ApplicationRo
             .IsMultiTenant();
 }
 
-public class IdentityUserRoleConfig : IEntityTypeConfiguration<IdentityUserRole<string>>
+public class IdentityUserRoleConfig : IEntityTypeConfiguration<ApplicationUserRole>
 {
-    public void Configure(EntityTypeBuilder<IdentityUserRole<string>> builder) =>
+    public void Configure(EntityTypeBuilder<ApplicationUserRole> builder) =>
         builder
             .ToTable("UserRoles", SchemaNames.Identity)
             .IsMultiTenant();

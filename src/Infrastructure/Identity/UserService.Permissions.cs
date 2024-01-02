@@ -11,7 +11,11 @@ internal partial class UserService
     {
         var user = await _userManager.FindByIdAsync(userId);
 
+<<<<<<< HEAD
         _ = user ?? throw new UnauthorizedException("Authentication Failed.", (int)HttpStatusCode.Unauthorized);
+=======
+        _ = user ?? throw new Application.Exceptions.ValidationException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
+>>>>>>> Fix/Migrations
 
         var userRoles = await _userManager.GetRolesAsync(user);
         var permissions = new List<string>();

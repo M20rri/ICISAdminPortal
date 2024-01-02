@@ -49,7 +49,11 @@ internal class AzureAdJwtBearerEvents : JwtBearerEvents
         if (principal is null || issuer is null || objectId is null)
         {
             _logger.TokenValidationFailed(objectId, issuer);
+<<<<<<< HEAD
             throw new UnauthorizedException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
+=======
+            throw new Application.Exceptions.ValidationException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
+>>>>>>> Fix/Migrations
         }
 
         // Lookup the tenant using the issuer.
@@ -64,7 +68,11 @@ internal class AzureAdJwtBearerEvents : JwtBearerEvents
             _logger.TokenValidationFailed(objectId, issuer);
 
             // The caller was not from a trusted issuer - throw to block the authentication flow.
+<<<<<<< HEAD
             throw new UnauthorizedException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
+=======
+            throw new Application.Exceptions.ValidationException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
+>>>>>>> Fix/Migrations
         }
 
         // The caller comes from an admin-consented, recorded issuer.

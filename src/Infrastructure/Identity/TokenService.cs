@@ -44,29 +44,49 @@ internal class TokenService : ITokenService
             || await _userManager.FindByEmailAsync(request.Email.Trim().Normalize()) is not { } user
             || !await _userManager.CheckPasswordAsync(user, request.Password))
         {
+<<<<<<< HEAD
             throw new UnauthorizedException(_t["Authentication Failed."], (int)HttpStatusCode.BadRequest);
+=======
+            throw new Application.Exceptions.ValidationException(_t["Authentication Failed."], (int)HttpStatusCode.BadRequest);
+>>>>>>> Fix/Migrations
         }
 
         if (!user.IsActive)
         {
+<<<<<<< HEAD
             throw new UnauthorizedException(_t["User Not Active. Please contact the administrator."], (int)HttpStatusCode.BadRequest);
+=======
+            throw new Application.Exceptions.ValidationException(_t["User Not Active. Please contact the administrator."], (int)HttpStatusCode.BadRequest);
+>>>>>>> Fix/Migrations
         }
 
         if (_securitySettings.RequireConfirmedAccount && !user.EmailConfirmed)
         {
+<<<<<<< HEAD
             throw new UnauthorizedException(_t["E-Mail not confirmed."], (int)HttpStatusCode.BadRequest);
+=======
+            throw new Application.Exceptions.ValidationException(_t["E-Mail not confirmed."], (int)HttpStatusCode.BadRequest);
+>>>>>>> Fix/Migrations
         }
 
         if (_currentTenant.Id != MultitenancyConstants.Root.Id)
         {
             if (!_currentTenant.IsActive)
             {
+<<<<<<< HEAD
                 throw new UnauthorizedException(_t["Tenant is not Active. Please contact the Application Administrator."], (int)HttpStatusCode.BadRequest);
+=======
+                throw new Application.Exceptions.ValidationException(_t["Tenant is not Active. Please contact the Application Administrator."], (int)HttpStatusCode.BadRequest);
+>>>>>>> Fix/Migrations
             }
 
             if (DateTime.UtcNow > _currentTenant.ValidUpto)
             {
+<<<<<<< HEAD
                 throw new UnauthorizedException(_t["Tenant Validity Has Expired. Please contact the Application Administrator."], (int)HttpStatusCode.BadRequest);
+=======
+                throw new Application.Exceptions.ValidationException(_t["Tenant Validity Has Expired. Please contact the Application Administrator."], (int)HttpStatusCode.BadRequest);
+>>>>>>> Fix/Migrations
             }
         }
 
@@ -80,12 +100,20 @@ internal class TokenService : ITokenService
         var user = await _userManager.FindByEmailAsync(userEmail!);
         if (user is null)
         {
+<<<<<<< HEAD
             throw new UnauthorizedException(_t["Authentication Failed."], (int)HttpStatusCode.BadRequest);
+=======
+            throw new Application.Exceptions.ValidationException(_t["Authentication Failed."], (int)HttpStatusCode.BadRequest);
+>>>>>>> Fix/Migrations
         }
 
         if (user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
         {
+<<<<<<< HEAD
             throw new UnauthorizedException(_t["Invalid Refresh Token."], (int)HttpStatusCode.BadRequest);
+=======
+            throw new Application.Exceptions.ValidationException(_t["Invalid Refresh Token."], (int)HttpStatusCode.BadRequest);
+>>>>>>> Fix/Migrations
         }
 
         return await GenerateTokensAndUpdateUser(user, ipAddress);
@@ -157,7 +185,11 @@ internal class TokenService : ITokenService
                 SecurityAlgorithms.HmacSha256,
                 StringComparison.InvariantCultureIgnoreCase))
         {
+<<<<<<< HEAD
             throw new UnauthorizedException(_t["Invalid Token."], (int)HttpStatusCode.Unauthorized);
+=======
+            throw new Application.Exceptions.ValidationException(_t["Invalid Token."], (int)HttpStatusCode.BadRequest);
+>>>>>>> Fix/Migrations
         }
 
         return principal;

@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ﻿using DocumentFormat.OpenXml.InkML;
 using ICISAdminPortal.Application.Common.Persistence.UserDefined;
+=======
+﻿using ICISAdminPortal.Application.Common.Persistence.UserDefined;
+>>>>>>> Fix/Migrations
 using ICISAdminPortal.Domain.Catalog;
 using ICISAdminPortal.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
