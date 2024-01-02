@@ -19,7 +19,6 @@ public interface IRepository<T> : IRepositoryBase<T>
 public interface IReadRepository<T> : IReadRepositoryBase<T>
     where T : class, IAggregateRoot
 {
-    Task<T> FindByIdAsync(Expression<Func<T, bool>> criteria, string[] includes = null);
 }
 
 /// <summary>
