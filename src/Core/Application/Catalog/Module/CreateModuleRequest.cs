@@ -1,12 +1,13 @@
-﻿using System.Net;
+﻿using ICISAdminPortal.Application.Common.Persistence.UserDefined;
+using System.Net;
 
 namespace ICISAdminPortal.Application.Catalog.Module;
 public record CreateModuleRequest(CreateModuleRequestDto model) : IRequest<DefaultIdType>;
 
 public sealed class CreateModuleHandler : IRequestHandler<CreateModuleRequest, DefaultIdType>
 {
-    private readonly IRepositoryWithEvents<Domain.Catalog.Module> _repository;
-    public CreateModuleHandler(IRepositoryWithEvents<Domain.Catalog.Module> repository)
+    private readonly IModuleRepositoryAsync _repository;
+    public CreateModuleHandler(IModuleRepositoryAsync repository)
     {
         _repository = repository;
     }
@@ -15,7 +16,7 @@ public sealed class CreateModuleHandler : IRequestHandler<CreateModuleRequest, D
     {
         var entity = request.model;
 
-        CreateModuleRequestValidator validationRules = new CreateModuleRequestValidator();
+        CreateModuleRequestValidator validationRules = new CreateModuleRequestValidator(_repository);
         var result = await validationRules.ValidateAsync(entity);
         if (result.Errors.Any())
         {
