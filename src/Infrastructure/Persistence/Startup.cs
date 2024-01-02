@@ -10,8 +10,7 @@ using ICISAdminPortal.Infrastructure.Persistence.Initialization;
 using ICISAdminPortal.Infrastructure.Persistence.Repository;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Serilog;
-using ICISAdminPortal.Application.Common.Persistence.UserDefined;
-using ICISAdminPortal.Infrastructure.Persistence.Repository.UserDefined;
+using NetCore.AutoRegisterDi;
 
 namespace ICISAdminPortal.Infrastructure.Persistence;
 internal static class Startup
@@ -29,6 +28,11 @@ internal static class Startup
             .ValidateDataAnnotations()
             .ValidateOnStart();
 
+        // No Need to register every single interface implementation one by one.
+        services.RegisterAssemblyPublicNonGenericClasses()
+              .Where(c => c.Name.EndsWith("RepositoryAsync"))
+              .AsPublicImplementedInterfaces();
+
         return services
             .AddDbContext<ApplicationDbContext>((p, m) =>
             {
@@ -44,12 +48,6 @@ internal static class Startup
 
             .AddTransient<IConnectionStringSecurer, ConnectionStringSecurer>()
             .AddTransient<IConnectionStringValidator, ConnectionStringValidator>()
-
-
-            .AddTransient<IModuleRepositoryAsync, ModuleRepositoryAsync>()
-            .AddTransient<IActionRepositoryAsync, ActionRepositoryAsync>()
-            .AddTransient<IPageRepositoryAsync, PageRepositoryAsync>()
-            .AddTransient<IPermissionRepositoryAsync, PermissionRepositoryAsync>()
 
             .AddRepositories();
     }
