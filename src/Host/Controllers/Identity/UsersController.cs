@@ -1,5 +1,7 @@
+using Azure;
 using ICISAdminPortal.Application.Identity.Users;
 using ICISAdminPortal.Application.Identity.Users.Password;
+using System.Net;
 
 namespace ICISAdminPortal.Host.Controllers.Identity;
 public class UsersController : VersionNeutralApiController
@@ -33,8 +35,6 @@ public class UsersController : VersionNeutralApiController
     }
 
     [HttpPost("{id}/roles")]
-    [ApiConventionMethod(typeof(FSHApiConventions), nameof(FSHApiConventions.Register))]
-    [MustHavePermission(FSHAction.Update, FSHResource.UserRoles)]
     [OpenApiOperation("Update a user's assigned roles.", "")]
     public Task<string> AssignRolesAsync(string id, UserRolesRequest request, CancellationToken cancellationToken)
     {

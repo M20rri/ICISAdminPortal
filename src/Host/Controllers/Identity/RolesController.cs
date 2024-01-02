@@ -1,5 +1,6 @@
 using ICISAdminPortal.Application.Catalog.Permission;
 using ICISAdminPortal.Application.Identity.Roles;
+using ICISAdminPortal.Application.Identity.Users;
 using System.Net;
 
 namespace ICISAdminPortal.Host.Controllers.Identity;
@@ -69,5 +70,13 @@ public class RolesController : VersionNeutralApiController
     {
         int response = await _roleService.CreateClaimsAsync(request, cancellationToken);
         return CustomResult("Saved Sucesfully", response, HttpStatusCode.OK);
+    }
+
+    [HttpPost("{id}/assign-role")]
+    [OpenApiOperation("Update a user's assigned roles.", "")]
+    public async Task<IActionResult> AssignRolesAsync(string id, AssignUserRoleRequest request, CancellationToken cancellationToken)
+    {
+        await _roleService.AssignUserRolesAsync(id, request, cancellationToken);
+        return CustomResult("Saved Sucesfully", HttpStatusCode.OK);
     }
 }

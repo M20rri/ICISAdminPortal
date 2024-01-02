@@ -1,4 +1,5 @@
 using ICISAdminPortal.Application.Catalog.Permission;
+using ICISAdminPortal.Application.Identity.Users;
 
 namespace ICISAdminPortal.Application.Identity.Roles;
 
@@ -21,4 +22,6 @@ public interface IRoleService : ITransientService
     Task<string> DeleteAsync(string id);
 
     Task<int> CreateClaimsAsync(CreatePermissionClaimRequestDto request, CancellationToken cancellationToken);
+
+    Task AssignUserRolesAsync(string userId, AssignUserRoleRequest request, CancellationToken cancellationToken);
 }

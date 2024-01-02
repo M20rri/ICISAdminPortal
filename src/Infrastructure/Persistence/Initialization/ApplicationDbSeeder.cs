@@ -45,28 +45,6 @@ internal class ApplicationDbSeeder
                 role = new ApplicationRole(roleName, $"{roleName} Role for {_currentTenant.Id} Tenant");
                 await _roleManager.CreateAsync(role);
             }
-
-            //await AssignPermissionsToRoleAsync(dbContext, FSHPermissions.All, role);
-        }
-    }
-
-    private async Task AssignPermissionsToRoleAsync(ApplicationDbContext dbContext, IReadOnlyList<FSHPermission> permissions, ApplicationRole role)
-    {
-        var currentClaims = await _roleManager.GetClaimsAsync(role);
-        foreach (var permission in permissions)
-        {
-            if (!currentClaims.Any(c => c.Type == FSHClaims.Permission && c.Value == permission.Name))
-            {
-                _logger.LogInformation("Seeding {role} Permission '{permission}' for '{tenantId}' Tenant.", role.Name, permission.Name, _currentTenant.Id);
-                dbContext.RoleClaims.Add(new ApplicationRoleClaim
-                {
-                    RoleId = role.Id,
-                    ClaimType = FSHClaims.Permission,
-                    ClaimValue = permission.Name,
-                    CreatedBy = "ApplicationDbSeeder"
-                });
-                await dbContext.SaveChangesAsync();
-            }
         }
     }
 

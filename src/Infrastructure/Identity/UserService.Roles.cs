@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ICISAdminPortal.Application.Common.Exceptions;
 using ICISAdminPortal.Application.Identity.Users;
 using ICISAdminPortal.Domain.Identity;
 using ICISAdminPortal.Shared.Authorization;
 using ICISAdminPortal.Shared.Multitenancy;
 using System.Net;
+using ICISAdminPortal.Application.Exceptions;
 
 namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService
@@ -37,7 +37,7 @@ internal partial class UserService
 
         var user = await _userManager.Users.Where(u => u.Id == userId).FirstOrDefaultAsync(cancellationToken);
 
-        _ = user ?? throw new Application.Exceptions.ValidationException(_t["User Not Found."], (int)HttpStatusCode.BadRequest);
+        _ = user ?? throw new ValidationException(_t["User Not Found."], (int)HttpStatusCode.BadRequest);
 
         // Check if the user is an admin for which the admin role is getting disabled
         if (await _userManager.IsInRoleAsync(user, FSHRoles.Admin)
@@ -52,12 +52,12 @@ internal partial class UserService
             {
                 if (_currentTenant.Id == MultitenancyConstants.Root.Id)
                 {
-                    throw new Application.Exceptions.ValidationException(_t["Cannot Remove Admin Role From Root Tenant Admin."], (int)HttpStatusCode.BadRequest);
+                    throw new ValidationException(_t["Cannot Remove Admin Role From Root Tenant Admin."], (int)HttpStatusCode.BadRequest);
                 }
             }
             else if (adminCount <= 2)
             {
-                throw new Application.Exceptions.ValidationException(_t["Tenant should have at least 2 Admins."], (int)HttpStatusCode.BadRequest);
+                throw new ValidationException(_t["Tenant should have at least 2 Admins."], (int)HttpStatusCode.BadRequest);
             }
         }
 
@@ -84,4 +84,6 @@ internal partial class UserService
 
         return _t["User Roles Updated Successfully."];
     }
+
+
 }

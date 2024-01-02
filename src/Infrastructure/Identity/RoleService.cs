@@ -15,6 +15,9 @@ using ICISAdminPortal.Shared.Multitenancy;
 using FluentValidation;
 using System.Net;
 using System;
+using ICISAdminPortal.Application.Identity.Users;
+using ICISAdminPortal.Application.Exceptions;
+using System.Security.Claims;
 
 namespace ICISAdminPortal.Infrastructure.Identity;
 internal class RoleService : IRoleService
@@ -219,5 +222,35 @@ internal class RoleService : IRoleService
         }
 
         return claim.Id;
+    }
+
+    public async Task AssignUserRolesAsync(string userId, AssignUserRoleRequest request, CancellationToken cancellationToken)
+    {
+        var user = await _userManager.FindByIdAsync(userId) ??
+                throw new Application.Exceptions.ValidationException("User Not Exist", (int)HttpStatusCode.BadRequest);
+
+        foreach (string role in request.Roles)
+        {
+            var roleManager = await _roleManager.FindByNameAsync(role) ??
+                throw new Application.Exceptions.ValidationException("Role Not Exist", (int)HttpStatusCode.BadRequest);
+
+            var customUserRole = new ApplicationUserRole
+            {
+                UserId = userId,
+                RoleId = roleManager.Id,
+                DepartmentId = request.DepartmentId// Set your custom property value here
+            };
+            try
+            {
+
+                _db.UserRoles.Add(customUserRole);
+                await _db.SaveChangesAsync(cancellationToken);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }
