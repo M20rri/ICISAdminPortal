@@ -11,6 +11,7 @@ using ICISAdminPortal.Shared.Authorization;
 using ICISAdminPortal.Shared.Multitenancy;
 using Serilog;
 using System.Security.Claims;
+using System.Net;
 
 namespace ICISAdminPortal.Infrastructure.Auth.AzureAd;
 internal class AzureAdJwtBearerEvents : JwtBearerEvents
@@ -48,7 +49,7 @@ internal class AzureAdJwtBearerEvents : JwtBearerEvents
         if (principal is null || issuer is null || objectId is null)
         {
             _logger.TokenValidationFailed(objectId, issuer);
-            throw new UnauthorizedException("Authentication Failed.");
+            throw new Application.Exceptions.ValidationException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
         }
 
         // Lookup the tenant using the issuer.
@@ -63,7 +64,7 @@ internal class AzureAdJwtBearerEvents : JwtBearerEvents
             _logger.TokenValidationFailed(objectId, issuer);
 
             // The caller was not from a trusted issuer - throw to block the authentication flow.
-            throw new UnauthorizedException("Authentication Failed.");
+            throw new Application.Exceptions.ValidationException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
         }
 
         // The caller comes from an admin-consented, recorded issuer.

@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using ICISAdminPortal.Application.Common.Exceptions;
 using System.Security.Claims;
 using System.Text;
+using System.Net;
+using ICISAdminPortal.Application.Exceptions;
 
 namespace ICISAdminPortal.Infrastructure.Auth.Jwt;
 public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions>
@@ -48,12 +49,12 @@ public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions
                 context.HandleResponse();
                 if (!context.Response.HasStarted)
                 {
-                    throw new UnauthorizedException("Authentication Failed.");
+                    throw new ValidationException("Authentication Failed.", (int)HttpStatusCode.Unauthorized);
                 }
 
                 return Task.CompletedTask;
             },
-            OnForbidden = _ => throw new ForbiddenException("You are not authorized to access this resource."),
+            OnForbidden = _ => throw new ValidationException("You are not authorized to access this resource.", (int)HttpStatusCode.BadRequest),
             OnMessageReceived = context =>
             {
                 var accessToken = context.Request.Query["access_token"];

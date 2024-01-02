@@ -7,6 +7,7 @@ using ICISAdminPortal.Application.Common.Persistence;
 using ICISAdminPortal.Application.Multitenancy;
 using ICISAdminPortal.Infrastructure.Persistence;
 using ICISAdminPortal.Infrastructure.Persistence.Initialization;
+using System.Net;
 
 namespace ICISAdminPortal.Infrastructure.Multitenancy;
 internal class TenantService : ITenantService
@@ -75,7 +76,7 @@ internal class TenantService : ITenantService
 
         if (tenant.IsActive)
         {
-            throw new ConflictException(_t["Tenant is already Activated."]);
+            throw new Application.Exceptions.ValidationException(_t["Tenant is already Activated."], (int)HttpStatusCode.BadRequest);
         }
 
         tenant.Activate();
@@ -90,7 +91,7 @@ internal class TenantService : ITenantService
         var tenant = await GetTenantInfoAsync(id);
         if (!tenant.IsActive)
         {
-            throw new ConflictException(_t["Tenant is already Deactivated."]);
+            throw new Application.Exceptions.ValidationException(_t["Tenant is already Deactivated."], (int)HttpStatusCode.BadRequest);
         }
 
         tenant.Deactivate();
@@ -108,5 +109,5 @@ internal class TenantService : ITenantService
 
     private async Task<FSHTenantInfo> GetTenantInfoAsync(string id) =>
         await _tenantStore.TryGetAsync(id)
-            ?? throw new NotFoundException(_t["{0} {1} Not Found.", typeof(FSHTenantInfo).Name, id]);
+            ?? throw new Application.Exceptions.ValidationException(_t["{0} {1} Not Found.", typeof(FSHTenantInfo).Name, id], (int)HttpStatusCode.BadRequest);
 }

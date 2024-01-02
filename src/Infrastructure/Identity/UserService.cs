@@ -19,6 +19,7 @@ using ICISAdminPortal.Domain.Identity;
 using ICISAdminPortal.Infrastructure.Auth;
 using ICISAdminPortal.Infrastructure.Persistence.Context;
 using ICISAdminPortal.Shared.Authorization;
+using System.Net;
 
 namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService : IUserService
@@ -106,7 +107,7 @@ internal partial class UserService : IUserService
     {
         if (string.IsNullOrWhiteSpace(_currentTenant?.Id))
         {
-            throw new UnauthorizedException(_t["Invalid Tenant."]);
+            throw new Application.Exceptions.ValidationException(_t["Invalid Tenant."], (int)HttpStatusCode.BadRequest);
         }
     }
 
@@ -126,7 +127,7 @@ internal partial class UserService : IUserService
             .Where(u => u.Id == userId)
             .FirstOrDefaultAsync(cancellationToken);
 
-        _ = user ?? throw new NotFoundException(_t["User Not Found."]);
+        _ = user ?? throw new Application.Exceptions.ValidationException(_t["User Not Found."], (int)HttpStatusCode.BadRequest);
 
         return user.Adapt<UserDetailsDto>();
     }
@@ -135,12 +136,12 @@ internal partial class UserService : IUserService
     {
         var user = await _userManager.Users.Where(u => u.Id == request.UserId).FirstOrDefaultAsync(cancellationToken);
 
-        _ = user ?? throw new NotFoundException(_t["User Not Found."]);
+        _ = user ?? throw new Application.Exceptions.ValidationException(_t["User Not Found."], (int)HttpStatusCode.BadRequest);
 
         bool isAdmin = await _userManager.IsInRoleAsync(user, FSHRoles.Admin);
         if (isAdmin)
         {
-            throw new ConflictException(_t["Administrators Profile's Status cannot be toggled"]);
+            throw new Application.Exceptions.ValidationException(_t["Administrators Profile's Status cannot be toggled"], (int)HttpStatusCode.BadRequest);
         }
 
         user.IsActive = request.ActivateUser;
