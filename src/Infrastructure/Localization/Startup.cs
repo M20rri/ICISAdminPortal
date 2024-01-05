@@ -10,30 +10,20 @@ internal static class Startup
 {
     internal static IServiceCollection AddPOLocalization(this IServiceCollection services, IConfiguration config)
     {
-        var localizationSettings = config.GetSection(nameof(LocalizationSettings)).Get<LocalizationSettings>();
+        services.AddLocalization(option => option.ResourcesPath = "Resources");
 
-        if (localizationSettings?.EnableLocalization is true
-            && localizationSettings.ResourcesPath is not null)
+        services.Configure<RequestLocalizationOptions>(options =>
         {
-            services.AddPortableObjectLocalization(options => options.ResourcesPath = localizationSettings.ResourcesPath);
-
-            services.Configure<RequestLocalizationOptions>(options =>
+            var supportedCultures = new[]
             {
-                if (localizationSettings.SupportedCultures != null)
-                {
-                    var supportedCultures = localizationSettings.SupportedCultures.Select(x => new CultureInfo(x)).ToList();
+                    new CultureInfo("en"),
+                    new CultureInfo("ar")
+            };
 
-                    options.SupportedCultures = supportedCultures;
-                    options.SupportedUICultures = supportedCultures;
-                }
-
-                options.DefaultRequestCulture = new RequestCulture(localizationSettings.DefaultRequestCulture ?? "en-US");
-                options.FallBackToParentCultures = localizationSettings.FallbackToParent ?? true;
-                options.FallBackToParentUICultures = localizationSettings.FallbackToParent ?? true;
-            });
-
-            services.AddSingleton<ILocalizationFileLocationProvider, FSHPoFileLocationProvider>();
-        }
+            options.DefaultRequestCulture = new RequestCulture(culture: "en", uiCulture: "en");
+            options.SupportedCultures = supportedCultures;
+            options.SupportedUICultures = supportedCultures;
+        });
 
         return services;
     }

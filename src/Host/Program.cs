@@ -5,6 +5,7 @@ using ICISAdminPortal.Host.Middlewares;
 using ICISAdminPortal.Infrastructure;
 using ICISAdminPortal.Infrastructure.Common;
 using ICISAdminPortal.Infrastructure.Logging.Serilog;
+using Microsoft.Extensions.Options;
 using Serilog;
 
 [assembly: ApiConventionType(typeof(FSHApiConventions))]
@@ -16,6 +17,7 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     builder.AddConfigurations().RegisterSerilog();
+    //builder.AddGlobalResourcesConfigurations();
     builder.Services.AddControllers();
     builder.Services.AddInfrastructure(builder.Configuration);
     builder.Services.AddApplication();
@@ -24,6 +26,7 @@ try
 
     await app.Services.InitializeDatabasesAsync();
 
+    app.UseRequestLocalization(app.Services.GetService<IOptions<RequestLocalizationOptions>>().Value);
     app.UseInfrastructure(builder.Configuration);
     app.UseMiddleware<ErrorHandlerMiddleware>();
     app.MapEndpoints();

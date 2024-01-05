@@ -41,7 +41,6 @@ public static class Startup
             .AddCorsPolicy(config)
             .AddExceptionMiddleware()
             .AddBehaviours(applicationAssembly)
-            .AddHealthCheck()
             .AddPOLocalization(config)
             .AddMailing(config)
             .AddMediatR(Assembly.GetExecutingAssembly())
@@ -94,11 +93,7 @@ public static class Startup
     public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder builder)
     {
         builder.MapControllers().RequireAuthorization();
-        builder.MapHealthCheck();
         builder.MapNotifications();
         return builder;
     }
-
-    private static IEndpointConventionBuilder MapHealthCheck(this IEndpointRouteBuilder endpoints) =>
-        endpoints.MapHealthChecks("/api/health");
 }

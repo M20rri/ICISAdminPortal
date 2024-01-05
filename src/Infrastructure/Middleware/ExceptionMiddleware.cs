@@ -5,6 +5,7 @@ using System.Net;
 using Newtonsoft.Json;
 using ICISAdminPortal.Application.Exceptions;
 using ICISAdminPortal.Application.Common.Exceptions;
+using ICISAdminPortal.Application.Resources;
 
 namespace ICISAdminPortal.Infrastructure.Middleware;
 internal class ExceptionMiddleware : IMiddleware
@@ -47,7 +48,7 @@ internal class ExceptionMiddleware : IMiddleware
 
                 result = JsonConvert.SerializeObject(new
                 {
-                    message = "SystemError ..!",
+                    message = LocalizeResource.SystemError,
                     statusCode = validationException.ErrorCode,
                     data = validationException.Data
                 });
