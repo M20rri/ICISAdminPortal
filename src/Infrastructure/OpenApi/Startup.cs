@@ -7,6 +7,7 @@ using NJsonSchema.Generation.TypeMappers;
 using NSwag;
 using NSwag.AspNetCore;
 using NSwag.Generation.Processors.Security;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using ZymLabs.NSwag.FluentValidation;
 
 namespace ICISAdminPortal.Infrastructure.OpenApi;
@@ -35,18 +36,6 @@ internal static class Startup
                 {
                     doc.Info.Title = settings.Title;
                     doc.Info.Version = settings.Version;
-                    doc.Info.Description = settings.Description;
-                    doc.Info.Contact = new()
-                    {
-                        Name = settings.ContactName,
-                        Email = settings.ContactEmail,
-                        Url = settings.ContactUrl
-                    };
-                    doc.Info.License = new()
-                    {
-                        Name = settings.LicenseName,
-                        Url = settings.LicenseUrl
-                    };
                 };
 
                 if (config["SecuritySettings:Provider"].Equals("AzureAd", StringComparison.OrdinalIgnoreCase))
@@ -109,23 +98,12 @@ internal static class Startup
         if (config.GetValue<bool>("SwaggerSettings:Enable"))
         {
             app.UseOpenApi();
-            app.UseSwaggerUi3(options =>
+            app.UseSwaggerUI(c =>
             {
-                options.DefaultModelsExpandDepth = -1;
-                options.DocExpansion = "none";
-                options.TagsSorter = "alpha";
-                if (config["SecuritySettings:Provider"].Equals("AzureAd", StringComparison.OrdinalIgnoreCase))
-                {
-                    options.OAuth2Client = new OAuth2ClientSettings
-                    {
-                        AppName = "Full Stack Hero Api Client",
-                        ClientId = config["SecuritySettings:Swagger:OpenIdClientId"],
-                        ClientSecret = string.Empty,
-                        UsePkceWithAuthorizationCodeGrant = true,
-                        ScopeSeparator = " "
-                    };
-                    options.OAuth2Client.Scopes.Add(config["SecuritySettings:Swagger:ApiScope"]);
-                }
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ICIS.WebApi");
+                c.DefaultModelsExpandDepth(-1);
+                c.DocExpansion(DocExpansion.None);
+                c.InjectStylesheet("/Files/Swagger/swagger.css");
             });
         }
 

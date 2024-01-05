@@ -1,0 +1,9 @@
+﻿.swagger-ui .topbar {
+    background-color: #2da44e;
+    border-bottom: 6px solid black;
+}
+
+
+.swagger-ui .swagger-ui {
+    background-color: #f6f8fa;
+}
