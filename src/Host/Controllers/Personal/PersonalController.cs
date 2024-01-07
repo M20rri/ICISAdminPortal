@@ -14,6 +14,10 @@ public class PersonalController : VersionNeutralApiController
     [OpenApiOperation("Get profile details of currently logged in user.", "")]
     public async Task<ActionResult<UserDetailsDto>> GetProfileAsync(CancellationToken cancellationToken)
     {
+        string? currentUserId = User.GetUserId();
+        string? currentUserName = User.GetUsername();
+        List<string>? claims = User.GetUserClaimValues();
+
         return User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId)
             ? Unauthorized()
             : Ok(await _userService.GetAsync(userId, cancellationToken));

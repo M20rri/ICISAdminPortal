@@ -9,7 +9,8 @@ public class PageRepositoryAsync : ApplicationDbRepository<Page>, IPageRepositor
 {
     private readonly ApplicationDbContext _dbContext;
     private readonly DbSet<Page> _dbSetter;
-    public PageRepositoryAsync(ApplicationDbContext dbContext) : base(dbContext)
+    public PageRepositoryAsync(ApplicationDbContext dbContext)
+        : base(dbContext: dbContext)
     {
         _dbContext = dbContext;
         _dbSetter = dbContext.Set<Page>();
@@ -28,6 +29,9 @@ public class PageRepositoryAsync : ApplicationDbRepository<Page>, IPageRepositor
 
     public async Task<bool> IsUniquePageAsync(string name, DefaultIdType moduleId)
     {
+        var page = await _dbSetter.FirstOrDefaultAsync(a => a.ModuleId == moduleId);
+        var pages = await _dbSetter.Where(a => a.ModuleId == moduleId).ToListAsync();
+
         return !await _dbSetter
              .AnyAsync(p => p.NameEn == name && p.ModuleId == moduleId);
     }

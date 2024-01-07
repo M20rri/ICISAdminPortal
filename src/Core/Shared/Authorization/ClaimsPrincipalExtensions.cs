@@ -4,28 +4,22 @@ namespace System.Security.Claims;
 public static class ClaimsPrincipalExtensions
 {
     public static string? GetEmail(this ClaimsPrincipal principal)
-        => principal.FindFirstValue(ClaimTypes.Email);
+        => principal.FindFirstValue("Email");
 
     public static string? GetTenant(this ClaimsPrincipal principal)
-        => principal.FindFirstValue(FSHClaims.Tenant);
+        => principal.FindFirstValue("TenantId");
 
     public static string? GetFullName(this ClaimsPrincipal principal)
-        => principal?.FindFirst(FSHClaims.Fullname)?.Value;
+        => principal?.FindFirst("Fullname")?.Value;
 
-    public static string? GetFirstName(this ClaimsPrincipal principal)
-        => principal?.FindFirst(ClaimTypes.Name)?.Value;
-
-    public static string? GetSurname(this ClaimsPrincipal principal)
-        => principal?.FindFirst(ClaimTypes.Surname)?.Value;
-
-    public static string? GetPhoneNumber(this ClaimsPrincipal principal)
-        => principal.FindFirstValue(ClaimTypes.MobilePhone);
+    public static string? GetUsername(this ClaimsPrincipal principal)
+        => principal?.FindFirst("Username")?.Value;
 
     public static string? GetUserId(this ClaimsPrincipal principal)
-       => principal.FindFirstValue(ClaimTypes.NameIdentifier);
+       => principal.FindFirstValue("Id");
 
-    public static string? GetImageUrl(this ClaimsPrincipal principal)
-       => principal.FindFirstValue(FSHClaims.ImageUrl);
+    public static List<string>? GetUserClaimValues(this ClaimsPrincipal principal)
+       => principal.FindAll("ClaimValue").Select(a => a.Value).ToList();
 
     public static DateTimeOffset GetExpiration(this ClaimsPrincipal principal) =>
         DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(
