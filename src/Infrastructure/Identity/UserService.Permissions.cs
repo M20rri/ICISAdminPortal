@@ -1,41 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ICISAdminPortal.Application.Common.Caching;
-using ICISAdminPortal.Application.Common.Exceptions;
-using ICISAdminPortal.Shared.Authorization;
+﻿using ICISAdminPortal.Shared.Authorization;
 using System.Net;
 
 namespace ICISAdminPortal.Infrastructure.Identity;
 internal partial class UserService
 {
-    public async Task<List<string>> GetPermissionsAsync(string userId, CancellationToken cancellationToken)
+    public async Task<List<string>> GetPermissionsAsync(string userId, string role, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByIdAsync(userId);
 
         _ = user ?? throw new Application.Exceptions.ValidationException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
 
-        var userRoles = await _userManager.GetRolesAsync(user);
+        var currentRole = await _roleManager.FindByNameAsync(role!);
         var permissions = new List<string>();
-        foreach (var role in await _roleManager.Roles
-            .Where(r => userRoles.Contains(r.Name!))
-            .ToListAsync(cancellationToken))
-        {
-            permissions.AddRange(await _db.RoleClaims
-                .Where(rc => rc.RoleId == role.Id && rc.ClaimType == FSHClaims.Permission)
-                .Select(rc => rc.ClaimValue!)
-                .ToListAsync(cancellationToken));
-        }
-
+        var roleClaims = await _roleManager.GetClaimsAsync(currentRole!);
+        var claimValues = roleClaims.Where(c => c.Type == FSHClaims.Permission)?.Select(a => a.Value).Distinct().ToList();
+        permissions.AddRange(claimValues!);
         return permissions.Distinct().ToList();
     }
 
-    public async Task<bool> HasPermissionAsync(string userId, string permission, CancellationToken cancellationToken)
+    public async Task<bool> HasPermissionAsync(string userId , string role , string permission, CancellationToken cancellationToken)
     {
-        var permissions = await _cache.GetOrSetAsync(
-            _cacheKeys.GetCacheKey(FSHClaims.Permission, userId),
-            () => GetPermissionsAsync(userId, cancellationToken),
-            cancellationToken: cancellationToken);
-
-        return permissions?.Contains(permission) ?? false;
+        var permissions = await GetPermissionsAsync(userId, role, cancellationToken);
+        string claimValue = permission.Split(".")[1];
+        return permissions?.Contains(claimValue) ?? false;
     }
 
     public Task InvalidatePermissionCacheAsync(string userId, CancellationToken cancellationToken) =>

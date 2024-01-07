@@ -87,7 +87,7 @@ internal class RoleService : IRoleService
 
             if (!result.Succeeded)
             {
-                throw new Application.Exceptions.ValidationException( result.GetErrors(_t), (int)HttpStatusCode.BadRequest);
+                throw new Application.Exceptions.ValidationException(result.GetErrors(_t), (int)HttpStatusCode.BadRequest);
             }
 
             await _events.PublishAsync(new ApplicationRoleCreatedEvent(role.Id, role.Name!));
@@ -207,6 +207,12 @@ internal class RoleService : IRoleService
         ApplicationRoleClaim claim = default!;
         if (role != null)
         {
+
+            // Check Dupplicate
+
+            bool isExist = await _db.RoleClaims.AnyAsync(x => x.RoleId == role.Id && x.ClaimValue == request.permissionCode);
+            if (isExist) throw new Application.Exceptions.ValidationException("Dupplicate role permission", (int)HttpStatusCode.BadRequest);
+
             claim = new ApplicationRoleClaim
             {
                 RoleId = role.Id,

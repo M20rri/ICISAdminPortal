@@ -11,10 +11,10 @@ public class PersonalController : VersionNeutralApiController
     public PersonalController(IUserService userService) => _userService = userService;
 
     [HttpGet("welcome")]
-    [MustHavePermission(FSHAction.View, FSHResource.Roles)]
+    [MustHavePermission("1008")]
     public async Task<ActionResult> GetWelcomeAsync()
     {
-        return await Task.FromResult<ActionResult>(Ok("Welcome to ICIS"));
+        return Ok("Welcome to ICIS");
     }
 
     [HttpGet("profile")]
@@ -63,7 +63,7 @@ public class PersonalController : VersionNeutralApiController
     {
         return User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId)
             ? Unauthorized()
-            : Ok(await _userService.GetPermissionsAsync(userId, cancellationToken));
+            : Ok(await _userService.GetPermissionsAsync(userId, User.GetUserRole(), cancellationToken));
     }
 
     [HttpGet("logs")]

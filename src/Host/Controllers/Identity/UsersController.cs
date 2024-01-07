@@ -11,7 +11,7 @@ public class UsersController : VersionNeutralApiController
     public UsersController(IUserService userService) => _userService = userService;
 
     [HttpGet]
-    [MustHavePermission(FSHAction.View, FSHResource.Users)]
+    [MustHavePermission("")]
     [OpenApiOperation("Get list of all users.", "")]
     public Task<List<UserDetailsDto>> GetListAsync(CancellationToken cancellationToken)
     {
@@ -19,7 +19,7 @@ public class UsersController : VersionNeutralApiController
     }
 
     [HttpGet("{id}")]
-    [MustHavePermission(FSHAction.View, FSHResource.Users)]
+    [MustHavePermission("")]
     [OpenApiOperation("Get a user's details.", "")]
     public Task<UserDetailsDto> GetByIdAsync(string id, CancellationToken cancellationToken)
     {
@@ -27,7 +27,7 @@ public class UsersController : VersionNeutralApiController
     }
 
     [HttpGet("{id}/roles")]
-    [MustHavePermission(FSHAction.View, FSHResource.UserRoles)]
+    [MustHavePermission("")]
     [OpenApiOperation("Get a user's roles.", "")]
     public Task<List<UserRoleDto>> GetRolesAsync(string id, CancellationToken cancellationToken)
     {
@@ -42,7 +42,7 @@ public class UsersController : VersionNeutralApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHAction.Create, FSHResource.Users)]
+    [MustHavePermission("")]
     [OpenApiOperation("Creates a new user.", "")]
     public Task<string> CreateAsync(CreateUserRequest request)
     {
@@ -66,7 +66,7 @@ public class UsersController : VersionNeutralApiController
     }
 
     [HttpPost("{id}/toggle-status")]
-    [MustHavePermission(FSHAction.Update, FSHResource.Users)]
+    [MustHavePermission("")]
     [ApiConventionMethod(typeof(FSHApiConventions), nameof(FSHApiConventions.Register))]
     [OpenApiOperation("Toggle a user's active status.", "")]
     public async Task<ActionResult> ToggleStatusAsync(string id, ToggleUserStatusRequest request, CancellationToken cancellationToken)

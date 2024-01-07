@@ -88,7 +88,6 @@ internal class TokenService : ITokenService
         bool isValidRole = await _userManager.IsInRoleAsync(user, request.Role);
         if (!isValidRole) throw new ValidationException("User is not assigned to this role.", (int)HttpStatusCode.BadRequest);
 
-
         var role = await _roleManager.FindByNameAsync(request.Role);
         var roleClaims = await _roleManager.GetClaimsAsync(role!);
         var claimValues = roleClaims.Where(c => c.Type == FSHClaims.Permission)?.Select(a => a.Value).ToList();
@@ -138,12 +137,12 @@ internal class TokenService : ITokenService
             new("fullName", $"{user.FirstName} {user.LastName}"),
             new("userName", user.UserName ?? string.Empty),
             new("tenant", _currentTenant!.Id),
-            new("roles", role),
+            new("userRole", role)
         };
 
         foreach (string claim in claimValues)
         {
-            claims.Add(new Claim("ClaimValue", claim));
+            claims.Add(new Claim("claimValue", claim));
         }
 
         return claims;

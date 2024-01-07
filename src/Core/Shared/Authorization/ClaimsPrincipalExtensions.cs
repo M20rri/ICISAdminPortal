@@ -4,19 +4,22 @@ namespace System.Security.Claims;
 public static class ClaimsPrincipalExtensions
 {
     public static string? GetEmail(this ClaimsPrincipal principal)
-        => principal.FindFirstValue("Email");
+        => principal.FindFirstValue("email");
 
     public static string? GetTenant(this ClaimsPrincipal principal)
-        => principal.FindFirstValue("TenantId");
+        => principal.FindFirstValue("tenant");
 
     public static string? GetFullName(this ClaimsPrincipal principal)
-        => principal?.FindFirst("Fullname")?.Value;
+        => principal?.FindFirst("fullName")?.Value;
 
     public static string? GetUsername(this ClaimsPrincipal principal)
-        => principal?.FindFirst("Username")?.Value;
+        => principal?.FindFirst("userName")?.Value;
 
     public static string? GetUserId(this ClaimsPrincipal principal)
-       => principal.FindFirstValue("Id");
+       => principal.FindFirstValue("id");
+
+    public static string? GetUserRole(this ClaimsPrincipal principal)
+    => principal.FindFirstValue("userRole");
 
     public static List<string>? GetUserClaimValues(this ClaimsPrincipal principal)
        => principal.FindAll("ClaimValue").Select(a => a.Value).ToList();
