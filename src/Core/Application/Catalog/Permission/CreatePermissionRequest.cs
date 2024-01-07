@@ -30,7 +30,6 @@ public sealed class CreatePermissionHandler : IRequestHandler<CreatePermissionRe
                 throw new Exceptions.ValidationException(errors, (int)HttpStatusCode.BadRequest);
             }
 
-
             var action = await _repositoryAction.GetByIdAsync(entity.actionId) ??
                 throw new Exceptions.ValidationException("Module Not Exist", (int)HttpStatusCode.BadRequest);
 

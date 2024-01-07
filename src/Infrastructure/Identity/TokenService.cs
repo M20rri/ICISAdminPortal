@@ -18,6 +18,7 @@ namespace ICISAdminPortal.Infrastructure.Identity;
 internal class TokenService : ITokenService
 {
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly IStringLocalizer _t;
     private readonly SecuritySettings _securitySettings;
     private readonly JwtSettings _jwtSettings;
@@ -25,12 +26,14 @@ internal class TokenService : ITokenService
 
     public TokenService(
         UserManager<ApplicationUser> userManager,
+        RoleManager<ApplicationRole> roleManager,
         IOptions<JwtSettings> jwtSettings,
         IStringLocalizer<TokenService> localizer,
         FSHTenantInfo? currentTenant,
         IOptions<SecuritySettings> securitySettings)
     {
         _userManager = userManager;
+        _roleManager = roleManager;
         _t = localizer;
         _jwtSettings = jwtSettings.Value;
         _currentTenant = currentTenant;
@@ -39,6 +42,14 @@ internal class TokenService : ITokenService
 
     public async Task<TokenResponse> GetTokenAsync(TokenRequest request, string ipAddress, CancellationToken cancellationToken)
     {
+        TokenRequestValidator validationRules = new TokenRequestValidator();
+        var result = await validationRules.ValidateAsync(request);
+        if (result.Errors.Any())
+        {
+            var errors = result.Errors.Select(x => x.ErrorMessage).ToList();
+            throw new ValidationException(errors, (int)HttpStatusCode.BadRequest);
+        }
+
         if (string.IsNullOrWhiteSpace(_currentTenant?.Id)
             || await _userManager.FindByEmailAsync(request.Email.Trim().Normalize()) is not { } user
             || !await _userManager.CheckPasswordAsync(user, request.Password))
@@ -69,6 +80,12 @@ internal class TokenService : ITokenService
             }
         }
 
+        bool roleExists = await _roleManager.RoleExistsAsync(request.Role);
+        if (!roleExists) throw new ValidationException("Role is not found.", (int)HttpStatusCode.BadRequest);
+
+        bool isValidRole = await _userManager.IsInRoleAsync(user, request.Role);
+        if (!isValidRole) throw new ValidationException("User is not assigned to this role.", (int)HttpStatusCode.BadRequest);
+
         return await GenerateTokensAndUpdateUser(user, request.Role);
     }
 
@@ -93,11 +110,6 @@ internal class TokenService : ITokenService
     private async Task<TokenResponse> GenerateTokensAndUpdateUser(ApplicationUser user, string role)
     {
         var userRoles = await _userManager.GetRolesAsync(user);
-
-        var userClaims = await _userManager.GetClaimsAsync(user);
-
-        var roleClaims = userClaims.Where(c => c.Type == ClaimTypes.Role);
-
 
         string token = GenerateJwt(user, role);
 
