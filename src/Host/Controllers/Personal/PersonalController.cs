@@ -10,6 +10,13 @@ public class PersonalController : VersionNeutralApiController
 
     public PersonalController(IUserService userService) => _userService = userService;
 
+    [HttpGet("welcome")]
+    [MustHavePermission(FSHAction.View, FSHResource.Roles)]
+    public async Task<ActionResult> GetWelcomeAsync()
+    {
+        return await Task.FromResult<ActionResult>(Ok("Welcome to ICIS"));
+    }
+
     [HttpGet("profile")]
     [OpenApiOperation("Get profile details of currently logged in user.", "")]
     public async Task<ActionResult<UserDetailsDto>> GetProfileAsync(CancellationToken cancellationToken)

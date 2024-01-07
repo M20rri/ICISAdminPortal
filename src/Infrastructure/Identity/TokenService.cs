@@ -133,12 +133,12 @@ internal class TokenService : ITokenService
     {
         var claims = new List<Claim>
         {
-            new("Id", user.Id),
-            new("Email", user.Email!),
-            new("Fullname", $"{user.FirstName} {user.LastName}"),
-            new("Username", user.UserName!),
-            new("TenantId", _currentTenant!.Id),
-            new("Role", role)
+            new("id", user.Id),
+            new("email", user.Email!),
+            new("fullName", $"{user.FirstName} {user.LastName}"),
+            new("userName", user.UserName ?? string.Empty),
+            new("tenant", _currentTenant!.Id),
+            new("roles", role),
         };
 
         foreach (string claim in claimValues)

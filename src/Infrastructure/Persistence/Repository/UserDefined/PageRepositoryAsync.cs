@@ -29,9 +29,6 @@ public class PageRepositoryAsync : ApplicationDbRepository<Page>, IPageRepositor
 
     public async Task<bool> IsUniquePageAsync(string name, DefaultIdType moduleId)
     {
-        var page = await _dbSetter.FirstOrDefaultAsync(a => a.ModuleId == moduleId);
-        var pages = await _dbSetter.Where(a => a.ModuleId == moduleId).ToListAsync();
-
         return !await _dbSetter
              .AnyAsync(p => p.NameEn == name && p.ModuleId == moduleId);
     }
