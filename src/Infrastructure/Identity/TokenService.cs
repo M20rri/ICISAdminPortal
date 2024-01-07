@@ -2,18 +2,17 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using ICISAdminPortal.Application.Common.Exceptions;
 using ICISAdminPortal.Application.Identity.Tokens;
 using ICISAdminPortal.Infrastructure.Auth;
 using ICISAdminPortal.Infrastructure.Auth.Jwt;
 using ICISAdminPortal.Infrastructure.Multitenancy;
-using ICISAdminPortal.Shared.Authorization;
 using ICISAdminPortal.Shared.Multitenancy;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Net;
+using ICISAdminPortal.Application.Exceptions;
 
 namespace ICISAdminPortal.Infrastructure.Identity;
 internal class TokenService : ITokenService
@@ -44,56 +43,63 @@ internal class TokenService : ITokenService
             || await _userManager.FindByEmailAsync(request.Email.Trim().Normalize()) is not { } user
             || !await _userManager.CheckPasswordAsync(user, request.Password))
         {
-            throw new Application.Exceptions.ValidationException(_t["Authentication Failed."], (int)HttpStatusCode.BadRequest);
+            throw new ValidationException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
         }
 
         if (!user.IsActive)
         {
-            throw new Application.Exceptions.ValidationException(_t["User Not Active. Please contact the administrator."], (int)HttpStatusCode.BadRequest);
+            throw new ValidationException("User Not Active. Please contact the administrator.", (int)HttpStatusCode.BadRequest);
         }
 
         if (_securitySettings.RequireConfirmedAccount && !user.EmailConfirmed)
         {
-            throw new Application.Exceptions.ValidationException(_t["E-Mail not confirmed."], (int)HttpStatusCode.BadRequest);
+            throw new ValidationException("E-Mail not confirmed.", (int)HttpStatusCode.BadRequest);
         }
 
         if (_currentTenant.Id != MultitenancyConstants.Root.Id)
         {
             if (!_currentTenant.IsActive)
             {
-                throw new Application.Exceptions.ValidationException(_t["Tenant is not Active. Please contact the Application Administrator."], (int)HttpStatusCode.BadRequest);
+                throw new ValidationException("Tenant is not Active. Please contact the Application Administrator.", (int)HttpStatusCode.BadRequest);
             }
 
             if (DateTime.UtcNow > _currentTenant.ValidUpto)
             {
-                throw new Application.Exceptions.ValidationException(_t["Tenant Validity Has Expired. Please contact the Application Administrator."], (int)HttpStatusCode.BadRequest);
+                throw new ValidationException("Tenant Validity Has Expired. Please contact the Application Administrator.", (int)HttpStatusCode.BadRequest);
             }
         }
 
-        return await GenerateTokensAndUpdateUser(user, ipAddress);
+        return await GenerateTokensAndUpdateUser(user, request.Role);
     }
 
-    public async Task<TokenResponse> RefreshTokenAsync(RefreshTokenRequest request, string ipAddress)
+    public async Task<TokenResponse> RefreshTokenAsync(RefreshTokenRequest request, string role)
     {
         var userPrincipal = GetPrincipalFromExpiredToken(request.Token);
         string? userEmail = userPrincipal.GetEmail();
         var user = await _userManager.FindByEmailAsync(userEmail!);
         if (user is null)
         {
-            throw new Application.Exceptions.ValidationException(_t["Authentication Failed."], (int)HttpStatusCode.BadRequest);
+            throw new ValidationException("Authentication Failed.", (int)HttpStatusCode.BadRequest);
         }
 
         if (user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
         {
-            throw new Application.Exceptions.ValidationException(_t["Invalid Refresh Token."], (int)HttpStatusCode.BadRequest);
+            throw new ValidationException("Invalid Refresh Token.", (int)HttpStatusCode.BadRequest);
         }
 
-        return await GenerateTokensAndUpdateUser(user, ipAddress);
+        return await GenerateTokensAndUpdateUser(user, role);
     }
 
-    private async Task<TokenResponse> GenerateTokensAndUpdateUser(ApplicationUser user, string ipAddress)
+    private async Task<TokenResponse> GenerateTokensAndUpdateUser(ApplicationUser user, string role)
     {
-        string token = GenerateJwt(user, ipAddress);
+        var userRoles = await _userManager.GetRolesAsync(user);
+
+        var userClaims = await _userManager.GetClaimsAsync(user);
+
+        var roleClaims = userClaims.Where(c => c.Type == ClaimTypes.Role);
+
+
+        string token = GenerateJwt(user, role);
 
         user.RefreshToken = GenerateRefreshToken();
         user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays);
@@ -103,22 +109,21 @@ internal class TokenService : ITokenService
         return new TokenResponse(token, user.RefreshToken, user.RefreshTokenExpiryTime);
     }
 
-    private string GenerateJwt(ApplicationUser user, string ipAddress) =>
-        GenerateEncryptedToken(GetSigningCredentials(), GetClaims(user, ipAddress));
+    private string GenerateJwt(ApplicationUser user, string role) =>
+        GenerateEncryptedToken(GetSigningCredentials(), GetClaims(user, role));
 
-    private IEnumerable<Claim> GetClaims(ApplicationUser user, string ipAddress) =>
-        new List<Claim>
+    private IEnumerable<Claim> GetClaims(ApplicationUser user, string role)
+    {
+        return new List<Claim>
         {
-            new(ClaimTypes.NameIdentifier, user.Id),
-            new(ClaimTypes.Email, user.Email!),
-            new(FSHClaims.Fullname, $"{user.FirstName} {user.LastName}"),
-            new(ClaimTypes.Name, user.FirstName ?? string.Empty),
-            new(ClaimTypes.Surname, user.LastName ?? string.Empty),
-            new(FSHClaims.IpAddress, ipAddress),
-            new(FSHClaims.Tenant, _currentTenant!.Id),
-            new(FSHClaims.ImageUrl, user.ImageUrl ?? string.Empty),
-            new(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty)
+            new("Id", user.Id),
+            new("Email", user.Email!),
+            new("Fullname", $"{user.FirstName} {user.LastName}"),
+            new("Username", user.UserName!),
+            new("TenantId", _currentTenant!.Id),
+            new("Role", role)
         };
+    }
 
     private static string GenerateRefreshToken()
     {
@@ -157,7 +162,7 @@ internal class TokenService : ITokenService
                 SecurityAlgorithms.HmacSha256,
                 StringComparison.InvariantCultureIgnoreCase))
         {
-            throw new Application.Exceptions.ValidationException(_t["Invalid Token."], (int)HttpStatusCode.BadRequest);
+            throw new ValidationException("Invalid Token", (int)HttpStatusCode.BadRequest);
         }
 
         return principal;

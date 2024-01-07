@@ -1,17 +1,20 @@
 namespace ICISAdminPortal.Application.Identity.Tokens;
 
-public record TokenRequest(string Email, string Password);
+public record TokenRequest(string Email, string Password, string Role);
 
 public class TokenRequestValidator : CustomValidator<TokenRequest>
 {
-    public TokenRequestValidator(IStringLocalizer<TokenRequestValidator> T)
+    public TokenRequestValidator()
     {
         RuleFor(p => p.Email).Cascade(CascadeMode.Stop)
             .NotEmpty()
             .EmailAddress()
-                .WithMessage(T["Invalid Email Address."]);
+                .WithMessage("Invalid Email");
 
         RuleFor(p => p.Password).Cascade(CascadeMode.Stop)
+            .NotEmpty();
+
+        RuleFor(p => p.Role).Cascade(CascadeMode.Stop)
             .NotEmpty();
     }
 }
