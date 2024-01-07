@@ -19,6 +19,7 @@ namespace ICISAdminPortal.Infrastructure.Identity;
 internal class TokenService : ITokenService
 {
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly IStringLocalizer _t;
     private readonly SecuritySettings _securitySettings;
     private readonly JwtSettings _jwtSettings;
@@ -26,12 +27,14 @@ internal class TokenService : ITokenService
 
     public TokenService(
         UserManager<ApplicationUser> userManager,
+        RoleManager<ApplicationRole> roleManager,
         IOptions<JwtSettings> jwtSettings,
         IStringLocalizer<TokenService> localizer,
         FSHTenantInfo? currentTenant,
         IOptions<SecuritySettings> securitySettings)
     {
         _userManager = userManager;
+        _roleManager = roleManager;
         _t = localizer;
         _jwtSettings = jwtSettings.Value;
         _currentTenant = currentTenant;
@@ -40,6 +43,14 @@ internal class TokenService : ITokenService
 
     public async Task<TokenResponse> GetTokenAsync(TokenRequest request, string ipAddress, CancellationToken cancellationToken)
     {
+        TokenRequestValidator validationRules = new TokenRequestValidator();
+        var result = await validationRules.ValidateAsync(request);
+        if (result.Errors.Any())
+        {
+            var errors = result.Errors.Select(x => x.ErrorMessage).ToList();
+            throw new Application.Exceptions.ValidationException(errors, (int)HttpStatusCode.BadRequest);
+        }
+
         if (string.IsNullOrWhiteSpace(_currentTenant?.Id)
             || await _userManager.FindByEmailAsync(request.Email.Trim().Normalize()) is not { } user
             || !await _userManager.CheckPasswordAsync(user, request.Password))
@@ -69,6 +80,16 @@ internal class TokenService : ITokenService
                 throw new Application.Exceptions.ValidationException(_t["Tenant Validity Has Expired. Please contact the Application Administrator."], (int)HttpStatusCode.BadRequest);
             }
         }
+
+        bool roleExists = await _roleManager.RoleExistsAsync(request.Role);
+        if (!roleExists) throw new Application.Exceptions.ValidationException("Role is not found.", (int)HttpStatusCode.BadRequest);
+
+        bool isValidRole = await _userManager.IsInRoleAsync(user, request.Role);
+        if (!isValidRole) throw new Application.Exceptions.ValidationException("User is not assigned to this role.", (int)HttpStatusCode.BadRequest);
+
+        var role = await _roleManager.FindByNameAsync(request.Role);
+        var roleClaims = await _roleManager.GetClaimsAsync(role!);
+        var claimValues = roleClaims.Where(c => c.Type == FSHClaims.Permission)?.Select(a => a.Value).ToList();
 
         return await GenerateTokensAndUpdateUser(user, ipAddress);
     }
