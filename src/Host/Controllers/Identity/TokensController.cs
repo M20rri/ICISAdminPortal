@@ -23,7 +23,7 @@ public sealed class TokensController : VersionNeutralApiController
     [ApiConventionMethod(typeof(FSHApiConventions), nameof(FSHApiConventions.Search))]
     public Task<TokenResponse> RefreshAsync(RefreshTokenRequest request)
     {
-        return _tokenService.RefreshTokenAsync(request, GetIpAddress()!);
+        return _tokenService.RefreshTokenAsync(request, string.Empty, new List<string>());
     }
 
     private string? GetIpAddress() =>

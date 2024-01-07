@@ -13,6 +13,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Net;
 using ICISAdminPortal.Application.Exceptions;
+using StackExchange.Redis;
+using ICISAdminPortal.Shared.Authorization;
 
 namespace ICISAdminPortal.Infrastructure.Identity;
 internal class TokenService : ITokenService
@@ -86,10 +88,15 @@ internal class TokenService : ITokenService
         bool isValidRole = await _userManager.IsInRoleAsync(user, request.Role);
         if (!isValidRole) throw new ValidationException("User is not assigned to this role.", (int)HttpStatusCode.BadRequest);
 
-        return await GenerateTokensAndUpdateUser(user, request.Role);
+
+        var role = await _roleManager.FindByNameAsync(request.Role);
+        var roleClaims = await _roleManager.GetClaimsAsync(role!);
+        var claimValues = roleClaims.Where(c => c.Type == FSHClaims.Permission)?.Select(a => a.Value).ToList();
+
+        return await GenerateTokensAndUpdateUser(user, request.Role, claimValues!);
     }
 
-    public async Task<TokenResponse> RefreshTokenAsync(RefreshTokenRequest request, string role)
+    public async Task<TokenResponse> RefreshTokenAsync(RefreshTokenRequest request, string role, List<string> claimValues)
     {
         var userPrincipal = GetPrincipalFromExpiredToken(request.Token);
         string? userEmail = userPrincipal.GetEmail();
@@ -104,14 +111,12 @@ internal class TokenService : ITokenService
             throw new ValidationException("Invalid Refresh Token.", (int)HttpStatusCode.BadRequest);
         }
 
-        return await GenerateTokensAndUpdateUser(user, role);
+        return await GenerateTokensAndUpdateUser(user, role, claimValues);
     }
 
-    private async Task<TokenResponse> GenerateTokensAndUpdateUser(ApplicationUser user, string role)
+    private async Task<TokenResponse> GenerateTokensAndUpdateUser(ApplicationUser user, string role, List<string> claimValues)
     {
-        var userRoles = await _userManager.GetRolesAsync(user);
-
-        string token = GenerateJwt(user, role);
+        string token = GenerateJwt(user, role, claimValues);
 
         user.RefreshToken = GenerateRefreshToken();
         user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays);
@@ -121,12 +126,12 @@ internal class TokenService : ITokenService
         return new TokenResponse(token, user.RefreshToken, user.RefreshTokenExpiryTime);
     }
 
-    private string GenerateJwt(ApplicationUser user, string role) =>
-        GenerateEncryptedToken(GetSigningCredentials(), GetClaims(user, role));
+    private string GenerateJwt(ApplicationUser user, string role, List<string> claimValues) =>
+        GenerateEncryptedToken(GetSigningCredentials(), GetClaims(user, role, claimValues));
 
-    private IEnumerable<Claim> GetClaims(ApplicationUser user, string role)
+    private IEnumerable<Claim> GetClaims(ApplicationUser user, string role, List<string> claimValues)
     {
-        return new List<Claim>
+        var claims = new List<Claim>
         {
             new("Id", user.Id),
             new("Email", user.Email!),
@@ -135,6 +140,13 @@ internal class TokenService : ITokenService
             new("TenantId", _currentTenant!.Id),
             new("Role", role)
         };
+
+        foreach (string claim in claimValues)
+        {
+            claims.Add(new Claim("ClaimValue", claim));
+        }
+
+        return claims;
     }
 
     private static string GenerateRefreshToken()
