@@ -119,7 +119,7 @@ internal partial class UserService
             throw new Application.Exceptions.ValidationException(result.GetErrors(_t), (int)HttpStatusCode.BadRequest);
         }
 
-        await _userManager.AddToRoleAsync(user, FSHRoles.Basic);
+        await _userManager.AddToRoleAsync(user, "Basic");
 
         var messages = new List<string> { string.Format(_t["User {0} Registered."], user.UserName) };
 

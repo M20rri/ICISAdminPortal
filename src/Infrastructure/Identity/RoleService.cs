@@ -126,7 +126,7 @@ internal class RoleService : IRoleService
     {
         var role = await _roleManager.FindByIdAsync(request.RoleId);
         _ = role ?? throw new Application.Exceptions.ValidationException(_t["Role Not Found"], (int)HttpStatusCode.BadRequest);
-        if (role.Name == FSHRoles.Admin)
+        if (role.Name == "Admin")
         {
             throw new Application.Exceptions.ValidationException(_t["Not allowed to modify Permissions for this Role."], (int)HttpStatusCode.BadRequest);
         }

@@ -138,7 +138,7 @@ internal partial class UserService : IUserService
 
         _ = user ?? throw new Application.Exceptions.ValidationException(_t["User Not Found."], (int)HttpStatusCode.BadRequest);
 
-        bool isAdmin = await _userManager.IsInRoleAsync(user, FSHRoles.Admin);
+        bool isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
         if (isAdmin)
         {
             throw new Application.Exceptions.ValidationException(_t["Administrators Profile's Status cannot be toggled"], (int)HttpStatusCode.BadRequest);
