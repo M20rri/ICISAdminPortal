@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using ICISAdminPortal.Application.Common.Persistence;
@@ -11,9 +10,9 @@ using ICISAdminPortal.Infrastructure.Persistence.Initialization;
 using ICISAdminPortal.Infrastructure.Persistence.Repository;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Serilog;
-using ICISAdminPortal.Application.Common.Persistence.UserDefined;
 using ICISAdminPortal.Infrastructure.Persistence.Repository.UserDefined;
-using NetCore.AutoRegisterDi;
+using Scrutor;
+using System.Reflection;
 
 namespace ICISAdminPortal.Infrastructure.Persistence;
 internal static class Startup
@@ -31,11 +30,19 @@ internal static class Startup
             .ValidateDataAnnotations()
             .ValidateOnStart();
 
-
         // No Need to register every single interface implementation one by one.
-        //services.RegisterAssemblyPublicNonGenericClasses()
-        //      .Where(c => c.Name.EndsWith("RepositoryAsync"))
-        //      .AsPublicImplementedInterfaces();
+
+        var assembly = Assembly.GetAssembly(typeof(ActionRepositoryAsync));
+
+        services.Scan(scan => scan
+            .FromAssemblies(assembly!)
+            .AddClasses(
+                filter => filter.Where(x => x.Name.EndsWith("RepositoryAsync")),
+                publicOnly: false)
+            .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+            .AsMatchingInterface()
+            .WithScopedLifetime());
+
 
         return services
             .AddDbContext<ApplicationDbContext>((p, m) =>
@@ -53,14 +60,13 @@ internal static class Startup
             .AddTransient<IConnectionStringSecurer, ConnectionStringSecurer>()
             .AddTransient<IConnectionStringValidator, ConnectionStringValidator>()
 
-
-
-            .AddTransient<IModuleRepositoryAsync, ModuleRepositoryAsync>()
-            .AddTransient<IActionRepositoryAsync, ActionRepositoryAsync>()
-            .AddTransient<IPageRepositoryAsync, PageRepositoryAsync>()
-            .AddTransient<IPermissionRepositoryAsync, PermissionRepositoryAsync>()
+            //.AddTransient<IModuleRepositoryAsync, ModuleRepositoryAsync>()
+            //.AddTransient<IActionRepositoryAsync, ActionRepositoryAsync>()
+            //.AddTransient<IPageRepositoryAsync, PageRepositoryAsync>()
+            //.AddTransient<IPermissionRepositoryAsync, PermissionRepositoryAsync>()
 
             .AddRepositories();
+
     }
 
     internal static DbContextOptionsBuilder UseDatabase(this DbContextOptionsBuilder builder, string dbProvider, string connectionString)
